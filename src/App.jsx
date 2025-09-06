@@ -108,7 +108,7 @@ function App() {
         <div className="hero-content">
           <div className="hero-text">
             <h2>80% Raw Vegan • 100% Delicious</h2>
-            <p>Experience the sensual side of healthy living</p>
+            <p>Experience the bliss of healthy living</p>
             <div className="hero-buttons">
               <button className="hero-button primary">Order Now</button>
               <button className="hero-button secondary">Shop Now</button>
