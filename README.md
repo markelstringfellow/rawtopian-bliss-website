@@ -1,6 +1,6 @@
 # Rawtopian Bliss Website
 
-A vibrant, modern website for Rawtopian Bliss - promoting 80% raw vegan cuisine with a bold, sensual approach to healthy living.
+A vibrant, modern website for Rawtopian Bliss - promoting raw vegan cuisine with bold taste, phenomenal texture and mouth watering delight in every bite. Would you like it raw?
 
 ## Features
 
