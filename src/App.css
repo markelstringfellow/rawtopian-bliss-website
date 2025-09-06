@@ -373,7 +373,7 @@
 }
 
 .food-item-description {
-  color: var(--color-fast-food-red);
+  color: #27ae60; /* Modern green that pops on yellow */
   line-height: 1.5;
   margin-bottom: 15px;
   font-family: var(--font-body);
