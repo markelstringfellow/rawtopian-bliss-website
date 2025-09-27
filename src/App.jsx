@@ -107,17 +107,25 @@ function App() {
         </div>
         <div className="hero-content">
           <div className="hero-text">
-            <h2>80% Raw Vegan • 100% Delicious</h2>
-            <p>Experience the bliss of healthy living</p>
-            <div className="hero-buttons">
-              <button className="hero-button primary">Order Now</button>
-              <button className="hero-button secondary">Shop Now</button>
+            <div className="hero-bubbles">
+              <div className="hero-bubble">
+                <h2 style={{ color: "#FF6700" }}>DELIVER IT RAW</h2>
+                <p style={{ color: "#222", fontWeight: "400" }}>
+                  Fresh meal plans delivered within 2.5 hours of Lancaster, SC. Choose 6 or 12 meals per week.
+                </p>
+                <button className="hero-button primary">Get Delivered</button>
+              </div>
+              <div className="hero-bubble" style={{ marginTop: "40px" }}>
+                <h2 style={{ color: "#FF6700" }}>SHIP IT RAW</h2>
+                <p style={{ color: "#222", fontWeight: "400" }}>
+                  Raw bulk items and specialty products shipped nationwide via mail.
+                </p>
+                <button className="hero-button secondary">Get Shipped</button>
+              </div>
             </div>
           </div>
         </div>
       </section>
-
-
 
       {/* Food Showcase Section */}
       <section id="menu" className="food-showcase">
@@ -186,4 +194,3 @@ function App() {
 }
 
 export default App;
-
