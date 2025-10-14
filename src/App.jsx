@@ -1,704 +1,190 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+import React from 'react';
+import './App.css';
+import RawtopianFinalLogo from './assets/RawtopianFinalLogo.png';
+import RawtopianTransparentLogo from './assets/RawtopianFinalLogotransparent.png';
 
-@custom-variant dark (&:is(.dark *));
+import SaaShalom from './assets/SaaShalom.JPG';
+import Food1 from './assets/Food1.JPG';
+import Food2 from './assets/Food2.JPG';
+import Food3 from './assets/Food3.JPG';
+import Food4 from './assets/Food4.JPG';
+import Food5 from './assets/Food5.JPG';
+import Food6 from './assets/Food6.JPG';
+import Food7 from './assets/Food7.JPG';
+import Food8 from './assets/Food8.JPG';
+import Food9 from './assets/Food9.JPG';
+import Food10 from './assets/Food10.JPG';
 
-@theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
+function App() {
+  const foodItems = [
+    {
+      id: 1,
+      name: "Raw Veggie Delight",
+      image: Food1,
+      description: "Fresh, vibrant vegetables bursting with natural flavors and nutrients. A perfect blend of health and taste."
+    },
+    {
+      id: 2,
+      name: "Garden Fresh Bowl",
+      image: Food2,
+      description: "A colorful medley of raw vegetables and greens, carefully crafted to nourish your body and soul."
+    },
+    {
+      id: 3,
+      name: "Rainbow Salad Supreme",
+      image: Food3,
+      description: "Experience the full spectrum of nature's bounty in this stunning raw creation."
+    },
+    {
+      id: 4,
+      name: "Raw Power Plate",
+      image: Food4,
+      description: "Energizing raw foods that will fuel your day with natural vitality and wellness."
+    },
+    {
+      id: 5,
+      name: "Nature's Bounty",
+      image: Food5,
+      description: "Pure, unprocessed ingredients combined to create a masterpiece of raw cuisine."
+    },
+    {
+      id: 6,
+      name: "Fresh & Raw Fusion",
+      image: Food6,
+      description: "A harmonious blend of textures and flavors that celebrate the beauty of raw food."
+    },
+    {
+      id: 7,
+      name: "Vibrant Veggie Mix",
+      image: Food7,
+      description: "Colorful vegetables that not only look amazing but taste incredible too."
+    },
+    {
+      id: 8,
+      name: "Raw Gourmet Special",
+      image: Food8,
+      description: "Elevated raw cuisine that proves healthy eating can be luxurious and satisfying."
+    },
+    {
+      id: 9,
+      name: "Garden to Table",
+      image: Food9,
+      description: "Fresh from nature to your plate, this dish embodies the essence of raw living."
+    },
+    {
+      id: 10,
+      name: "Raw Bliss Creation",
+      image: Food10,
+      description: "The ultimate expression of raw food artistry - beautiful, delicious, and nourishing."
+    }
+  ];
+
+  return (
+    <div className="App">
+      {/* Header Section */}
+      <header className="App-header">
+        <nav className="horizontal-nav">
+          <a href="#menu" className="nav-link">MENU</a>
+          <a href="#about" className="nav-link">ABOUT</a>
+          <img src={RawtopianTransparentLogo} alt="Rawtopian Bliss Logo" className="center-logo" />
+          <a href="#classes" className="nav-link">CHEF CLASSES</a>
+          <a href="#contact" className="nav-link">CONTACT</a>
+        </nav>
+      </header>
+
+      {/* Hero Section with Video Background */}
+      <section className="hero-section">
+        <div className="video-background">
+          <iframe
+            src="https://www.youtube.com/embed/Ek-0_z1WGDM?autoplay=1&mute=1&loop=1&playlist=Ek-0_z1WGDM&controls=0&showinfo=0&rel=0&modestbranding=1"
+            title="Background Video"
+            frameBorder="0"
+            allow="autoplay; encrypted-media"
+            allowFullScreen
+            className="background-video"
+          ></iframe>
+          <div className="video-overlay"></div>
+        </div>
+        <div className="hero-content">
+          <div className="hero-text">
+            <h1 className="main-tagline">DO YOU LIKE IT RAW?</h1>
+            <h2>80% Raw Vegan • 100% Delicious</h2>
+            <p>Experience the sensual side of healthy living</p>
+            <div className="hero-buttons">
+              <button className="hero-button primary">Get Delivered</button>
+              <button className="hero-button secondary">Get Shipped</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+      {/* Food Showcase Section */}
+      <section id="menu" className="food-showcase">
+        <h2>Our Rawtopian Delights</h2>
+        <p className="food-showcase-subtitle">Indulge in nature's finest creations</p>
+        
+        <div className="food-grid">
+          {foodItems.map((item) => (
+            <div key={item.id} className="food-item">
+              <img src={item.image} alt={item.name} />
+              <div className="food-item-info">
+                <h3 className="food-item-title">{item.name}</h3>
+                <p className="food-item-description">{item.description}</p>
+                <button className="order-button">Order Now</button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="about-section">
+        <div className="about-content">
+          <div className="about-text">
+            <h2>Meet Chef Saa Shalom</h2>
+            <p>
+              At Rawtopian Bliss, our goal is to make you enjoyable healthy meals. 
+              We create foods that will flatter your taste buds while nurturing your body. 
+              Whether you want something light or full, we have the best dishes for you!
+            </p>
+            <p>
+              Our 80% raw vegan approach combines the sensual pleasure of eating with 
+              the pure nutrition your body craves. Every dish is crafted with passion, 
+              creativity, and a deep understanding of what makes food truly satisfying.
+            </p>
+          </div>
+          <div className="about-image">
+            <img src={SaaShalom} alt="Chef Saa Shalom" />
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action Section */}
+      <section className="cta-section">
+        <h2>Ready to Experience Raw Bliss?</h2>
+        <div className="cta-buttons">
+          <button className="cta-button primary">Order Now</button>
+          <button className="cta-button secondary">Book Chef Classes</button>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="footer">
+        <div className="footer-content">
+          <img src={RawtopianTransparentLogo} alt="Rawtopian Bliss Logo" className="footer-logo" />
+          <p>&copy; 2024 Rawtopian Bliss. All rights reserved.</p>
+          <div className="social-links">
+            <a href="#" className="social-link">Instagram</a>
+            <a href="#" className="social-link">Facebook</a>
+            <a href="#" className="social-link">TikTok</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
 }
 
-:root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
-
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-red-800;
-    font-family: var(--font-body);
-  }
-}
-
-
-/* Custom Styles for Rawtopian Bliss Website */
-
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Source+Sans+Pro:wght@300;400;600&family=Poppins:wght@300;400;600;700&family=Quicksand:wght@300;400;600;700&family=Comfortaa:wght@300;400;600;700&family=Amatic+SC:wght@400;700&family=Caveat:wght@400;600;700&display=swap");
-
-:root {
-  --color-red: #e74c3c; /* Tomato red, bold */
-  --color-green: #27ae60; /* Vibrant green */
-  --color-gold: #f1c40f; /* Golden yellow */
-  --color-purple: #8e44ad; /* Deep purple */
-  --color-bright-grey: #95a5a6; /* Brighter grey for contrast */
-  --color-light-grey: #ecf0f1; /* Light background */
-  --color-white: #ffffff;
-
-  /* Fast food inspired colors */
-  --color-fast-food-red: #da291c; /* Classic fast food red */
-  --color-fast-food-yellow: #ffcc00; /* Classic fast food yellow */
-  
-  /* Typography Variables */
-  --font-main: 'Montserrat', 'Proxima Nova', sans-serif;
-  --font-body: 'Source Sans Pro', 'Avenir', 'Circular', sans-serif;
-  --font-secondary: 'Poppins', 'Quicksand', 'Comfortaa', sans-serif;
-  --font-special: 'Amatic SC', 'Caveat', cursive;
-}
-
-.App {
-  color: var(--color-white);
-  text-align: center;
-}
-
-.App-header {
-  background-color: var(--color-fast-food-red);
-  padding: 15px 20px;
-  color: var(--color-white);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  transition: all 0.3s ease;
-}
-
-/* Add padding to body to account for fixed header */
-body {
-  padding-top: 80px;
-}
-
-.horizontal-nav {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  gap: 60px;
-  flex-wrap: nowrap;
-}
-
-.center-logo {
-  max-width: 120px;
-  height: auto;
-  margin: 0 20px;
-  flex-shrink: 0;
-  display: block;
-}
-
-.nav-link {
-  color: var(--color-gold);
-  text-decoration: none;
-  font-size: 1.1em;
-  font-weight: bold;
-  letter-spacing: 1px;
-  transition: color 0.3s ease;
-  white-space: nowrap;
-  font-family: var(--font-main);
-}
-
-.nav-link:hover {
-  color: var(--color-fast-food-yellow);
-}
-
-/* Hero Section with Video Background */
-.hero-section {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  margin-top: -80px;
-  padding-top: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.video-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-
-.background-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  pointer-events: none;
-}
-
-.video-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(218, 41, 28, 0.4); /* Semi-transparent fast-food red */
-  z-index: 2;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 3;
-  text-align: center;
-  color: var(--color-white);
-  max-width: 1200px;
-  padding: 0 20px;
-}
-
-.hero-text {
-  animation: fadeInUp 1s ease-out 0.3s both;
-  color: var(--color-white);
-}
-
-.main-tagline {
-  font-family: var(--font-special);
-  font-size: 4.5em;
-  font-weight: 900;
-  margin-bottom: 15px;
-  text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
-  color: var(--color-fast-food-yellow);
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  line-height: 1.1;
-}
-
-.hero-text h2 {
-  font-family: var(--font-special);
-  font-size: 3.5em;
-  font-weight: 700;
-  margin-bottom: 20px;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-}
-
-.hero-text p {
-  font-family: var(--font-secondary);
-  font-size: 1.6em;
-  font-weight: 400;
-}
-
-.hero-buttons {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  animation: fadeInUp 1s ease-out 0.6s both;
-  margin-top: 30px;
-}
-
-.hero-button {
-  padding: 15px 30px;
-  border: none;
-  border-radius: 10px;
-  font-size: 1.3em;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-family: var(--font-main);
-}
-
-.hero-button.primary {
-  background-color: var(--color-fast-food-red);
-  color: var(--color-white);
-}
-
-.hero-button.primary:hover {
-  background-color: var(--color-red);
-  transform: scale(1.05);
-}
-
-.hero-button.secondary {
-  background-color: var(--color-gold);
-  color: var(--color-white);
-}
-
-.hero-button.secondary:hover {
-  background-color: var(--color-fast-food-yellow);
-  transform: scale(1.05);
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Food Showcase */
-.food-showcase {
-  padding: 60px 20px;
-  background-color: var(--color-fast-food-red);
-}
-
-.food-showcase h2 {
-  font-family: var(--font-special);
-  color: var(--color-fast-food-red);
-  font-size: 3em;
-  margin-bottom: 10px;
-  font-weight: 700;
-}
-
-.food-showcase-subtitle {
-  color: var(--color-fast-food-red);
-  margin-bottom: 40px;
-  font-style: italic;
-  font-family: var(--font-secondary);
-  font-size: 1.4em;
-}
-
-.food-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.food-item {
-  background-color: var(--color-fast-food-yellow);
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 8px 16px rgba(218, 41, 28, 0.15);
-  text-align: left;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.food-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 24px rgba(218, 41, 28, 0.2);
-}
-
-.food-item img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-}
-
-.food-item-info {
-  padding: 20px;
-}
-
-.food-item-title {
-  color: var(--color-fast-food-red);
-  margin-top: 0;
-  font-size: 1.6em;
-  margin-bottom: 10px;
-  font-family: var(--font-secondary);
-  font-weight: 600;
-}
-
-.food-item-description {
-  color: #1a3d0a !important;
-  line-height: 1.5;
-  margin-bottom: 15px;
-  font-family: var(--font-body);
-  font-weight: 600;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-}
-
-.order-button {
-  background-color: var(--color-fast-food-red);
-  color: var(--color-white);
-  padding: 12px 20px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1.1em;
-  font-weight: bold;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  font-family: var(--font-main);
-}
-
-.order-button:hover {
-  background-color: var(--color-red);
-  transform: scale(1.05);
-}
-
-/* About Section */
-.about-section {
-  padding: 60px 20px;
-  background: linear-gradient(135deg, var(--color-fast-food-yellow), var(--color-gold));
-}
-
-.about-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  align-items: center;
-}
-
-.about-text h2 {
-  font-family: var(--font-special);
-  color: var(--color-fast-food-red);
-  font-size: 2.5em;
-  margin-bottom: 20px;
-  font-weight: 700;
-}
-
-.about-text p {
-  color: var(--color-fast-food-red);
-  font-size: 1.3em;
-  line-height: 1.6;
-  font-family: var(--font-body);
-}
-
-.about-image {
-  width: 100%;
-  max-width: 400px;
-  height: auto;
-  border-radius: 15px;
-  box-shadow: 0 8px 16px rgba(218, 41, 28, 0.15);
-}
-
-/* Call to Action Section */
-.cta-section {
-  padding: 60px 20px;
-  background: linear-gradient(135deg, var(--color-fast-food-red), var(--color-red));
-  color: var(--color-white);
-}
-
-.cta-section h2 {
-  font-family: var(--font-special);
-  font-size: 2.8em;
-  margin-bottom: 30px;
-  text-shadow: 3px 3px 6px rgba(218, 41, 28, 0.3);
-  font-weight: 700;
-}
-
-.cta-buttons {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.cta-button {
-  padding: 15px 30px;
-  border: none;
-  border-radius: 10px;
-  font-size: 1.2em;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: var(--font-main);
-}
-
-.cta-button.primary {
-  background-color: var(--color-fast-food-yellow);
-  color: var(--color-fast-food-red);
-}
-
-.cta-button.primary:hover {
-  background-color: var(--color-gold);
-  transform: scale(1.05);
-}
-
-.cta-button.secondary {
-  background-color: transparent;
-  color: var(--color-white);
-  border: 2px solid var(--color-white);
-}
-
-.cta-button.secondary:hover {
-  background-color: var(--color-white);
-  color: var(--color-fast-food-red);
-}
-
-.footer {
-  background-color: var(--color-fast-food-yellow);
-  color: var(--color-fast-food-red);
-  padding: 40px 20px;
-  font-family: var(--font-body);
-}
-
-.footer-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
-
-.footer-logo {
-  max-width: 150px;
-  height: auto;
-}
-
-.social-links {
-  display: flex;
-  gap: 20px;
-}
-
-.social-link {
-  color: var(--color-gold);
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s ease;
-  font-family: var(--font-secondary);
-}
-
-.social-link:hover {
-  color: var(--color-fast-food-yellow);
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .horizontal-nav {
-    gap: 30px;
-  }
-  
-  .center-logo {
-    max-width: 100px;
-  }
-  
-  .nav-link {
-    font-size: 1em;
-  }
-
-  /* Adjust body padding for mobile */
-  body {
-    padding-top: 70px;
-  }
-
-  .App-header {
-    padding: 10px 15px;
-  }
-
-  .hero-section {
-    margin-top: -70px;
-    padding-top: 70px;
-  }
-
-  .main-tagline {
-    font-size: 3em;
-  }
-
-  .hero-text h2 {
-    font-size: 2.5em;
-  }
-
-  .hero-text p {
-    font-size: 1.4em;
-  }
-
-  .hero-logo {
-    max-width: 400px;
-  }
-
-  .hero-buttons {
-    flex-direction: row;
-    justify-content: center;
-    gap: 15px;
-  }
-
-  .hero-button {
-    width: auto;
-    min-width: 140px;
-    padding: 12px 20px;
-    font-size: 1.1em;
-  }
-
-  .food-showcase h2 {
-    font-size: 2.2em;
-  }
-
-  .food-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .about-content {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .cta-buttons {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .cta-button {
-    width: 250px;
-  }
-}
-
-@media (max-width: 480px) {
-  .horizontal-nav {
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .center-logo {
-    order: -1;
-    max-width: 80px;
-    margin: 10px 0;
-  }
-
-  /* Adjust body padding for smallest screens */
-  body {
-    padding-top: 120px;
-  }
-
-  .App-header {
-    padding: 15px 10px;
-  }
-
-  .hero-section {
-    margin-top: -120px;
-    padding-top: 120px;
-  }
-
-  .main-tagline {
-    font-size: 2.2em;
-  }
-
-  .hero-text h2 {
-    font-size: 1.8em;
-  }
-
-  .hero-text p {
-    font-size: 1.2em;
-  }
-
-  .hero-logo {
-    max-width: 300px;
-  }
-
-  .hero-buttons {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .hero-button {
-    width: 200px;
-    padding: 10px 15px;
-    font-size: 1em;
-  }
-
-  .food-showcase h2 {
-    font-size: 1.8em;
-  }
-
-  .about-text h2 {
-    font-size: 2em;
-  }
-
-  .cta-section h2 {
-    font-size: 2em;
-  }
-}
-
+export default App;
 
