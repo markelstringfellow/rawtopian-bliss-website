@@ -3,7 +3,7 @@
   base = "."
   
   # Directory that contains the deploy-ready HTML files and assets
-  publish = "dist"
+  publish = "rawtopian-final-deployment/dist"
   
   # Default build command
   command = "npm run build"
