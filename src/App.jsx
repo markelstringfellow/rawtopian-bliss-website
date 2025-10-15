@@ -87,7 +87,7 @@ function App() {
           <a href="#menu" className="nav-link">MENU</a>
           <a href="#about" className="nav-link">ABOUT</a>
           <img src={RawtopianTransparentLogo} alt="Rawtopian Bliss Logo" className="center-logo" />
-          <a href="#classes" className="nav-link">CHEF CLASSES</a>
+          <a href="#classes" className="nav-link">CLASSES/BOOKS</a>
           <a href="#contact" className="nav-link">CONTACT</a>
         </nav>
       </header>
