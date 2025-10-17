@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 import './App.css';
 import RawtopianFinalLogo from './assets/RawtopianFinalLogo.png';
 import RawtopianTransparentLogo from './assets/RawtopianFinalLogotransparent.png';
@@ -114,7 +114,7 @@ function HomePage() {
             <h2>80% Raw Vegan • 100% Delicious</h2>
             <p>Experience the sensual side of healthy living</p>
             <div className="hero-buttons">
-              <a href="/get-delivered" className="hero-button primary">Get Delivered</a>
+              <Link to="/get-delivered" className="hero-button primary">Get Delivered</Link>
               <button className="hero-button secondary">Get Shipped</button>
             </div>
           </div>
