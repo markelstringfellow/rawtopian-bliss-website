@@ -1,4 +1,5 @@
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import RawtopianFinalLogo from './assets/RawtopianFinalLogo.png';
 import RawtopianTransparentLogo from './assets/RawtopianFinalLogotransparent.png';
@@ -15,7 +16,9 @@ import Food8 from './assets/Food8.JPG';
 import Food9 from './assets/Food9.JPG';
 import Food10 from './assets/Food10.JPG';
 
-function App() {
+import GetDelivered from './GetDelivered';
+
+function HomePage() {
   const foodItems = [
     {
       id: 1,
@@ -84,10 +87,10 @@ function App() {
       {/* Header Section */}
       <header className="App-header">
         <nav className="horizontal-nav">
-          <a href="#menu" className="nav-link">MENU</a>
-          <a href="#about" className="nav-link">ABOUT</a>
+          <a href="/#menu" className="nav-link">MENU</a>
+          <a href="/#about" className="nav-link">ABOUT</a>
           <img src={RawtopianTransparentLogo} alt="Rawtopian Bliss Logo" className="center-logo" />
-          <a href="#classes" className="nav-link">CLASSES/BOOKS</a>
+          <a href="#classes" className="nav-link">CHEF CLASSES</a>
           <a href="#contact" className="nav-link">CONTACT</a>
         </nav>
       </header>
@@ -108,9 +111,10 @@ function App() {
         <div className="hero-content">
           <div className="hero-text">
             <h1 className="main-tagline">DO YOU LIKE IT RAW?</h1>
-            <h2>80% Raw • 100% Delicious</h2>
+            <h2>80% Raw Vegan • 100% Delicious</h2>
+            <p>Experience the sensual side of healthy living</p>
             <div className="hero-buttons">
-              <button className="hero-button primary">Get Delivered</button>
+              <a href="/get-delivered" className="hero-button primary">Get Delivered</a>
               <button className="hero-button secondary">Get Shipped</button>
             </div>
           </div>
@@ -182,6 +186,15 @@ function App() {
         </div>
       </footer>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/get-delivered" element={<GetDelivered />} />
+    </Routes>
   );
 }
 
