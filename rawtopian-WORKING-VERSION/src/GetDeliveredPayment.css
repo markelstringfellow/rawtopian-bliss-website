@@ -1,0 +1,126 @@
+/* Additional styles for payment integration */
+
+.card-element-container {
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 15px;
+  background: white;
+  margin-top: 8px;
+}
+
+.card-element-container:focus-within {
+  border-color: var(--color-gold, #FFD700);
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+}
+
+.error-message {
+  background-color: #fee;
+  color: #c33;
+  padding: 12px;
+  border-radius: 6px;
+  margin: 15px 0;
+  border-left: 4px solid #c33;
+  font-size: 14px;
+}
+
+.secure-payment-notice {
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+  margin-top: 15px;
+  font-weight: 500;
+}
+
+.order-success {
+  text-align: center;
+  padding: 60px 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.order-success h1 {
+  color: var(--color-fast-food-red, #E31837);
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.order-success p {
+  font-size: 1.2em;
+  color: #333;
+  margin: 15px 0;
+  line-height: 1.6;
+}
+
+.home-btn {
+  background: var(--color-fast-food-red, #E31837);
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  font-size: 1.1em;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 30px;
+  transition: all 0.3s ease;
+}
+
+.home-btn:hover {
+  background: var(--color-gold, #FFD700);
+  color: var(--color-fast-food-red, #E31837);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.submit-order-btn:disabled,
+.cancel-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.submit-order-btn:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* Improve form group spacing */
+.checkout-form .form-group {
+  margin-bottom: 20px;
+}
+
+.checkout-form .form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+.checkout-form .form-group input,
+.checkout-form .form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: inherit;
+  transition: border-color 0.3s ease;
+}
+
+.checkout-form .form-group input:focus,
+.checkout-form .form-group textarea:focus {
+  outline: none;
+  border-color: var(--color-gold, #FFD700);
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .order-success h1 {
+    font-size: 2em;
+  }
+  
+  .order-success p {
+    font-size: 1em;
+  }
+}
+
