@@ -24,13 +24,13 @@ function HomePage() {
       id: 1,
       name: "Rainbow Salad",
       image: Food1,
-      description: "This colorful medley of raw power and great taste is 95% Raw with 2oz of cooked Quinoa for added protein and that "cooked food texture" all presented on a bed of organic Spring Mix.  A rainbow of plantbased color, enzyme rich, great tasting, and complemented with a 2oz tub of Jalapeño crisps and a Golden Goddess dressing. "
+      description: "This colorful medley of raw power and great taste is 95% Raw with 2oz of cooked Quinoa for added protein and that cooked food texture all presented on a bed of organic Spring Mix. A rainbow of plantbased color, enzyme rich, great tasting, and complemented with a 2oz tub of Jalapeño crisps and a Golden Goddess dressing."
     },
     {
       id: 2,
       name: "Mock Chiken Salad Wrap",
       image: Food2,
-      description: "Our Mock Chiken Salad is made from fresh Parsnips with added veggies, herbs and spices.  Its 100% Raw and seasoned to perfection, wrapped in a habinero lime tortilla shell, on a bed of Spring Mix, sliced Tomatoes and Alfalfa Sprouts.  This wrap comes with a 2oz tub of Sunseed Cheeze and GF Sweet Chili Rice Crackers."
+      description: "Our Mock Chiken Salad is made from fresh parsnips with added veggies, herbs and spices. Its 100% Raw and seasoned to perfection, wrapped in a habinero lime tortilla shell, on a bed of Spring Mix, sliced Tomatoes and Alfalfa Sprouts.  This wrap comes with a 2oz tub of Sunseed Cheeze and GF Sweet Chili Rice Crackers."
     },
     {
       id: 3,
