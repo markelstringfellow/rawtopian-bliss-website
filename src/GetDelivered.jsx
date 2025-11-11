@@ -220,15 +220,15 @@ function GetDelivered() {
   const [orderComplete, setOrderComplete] = useState(false);
 
   const foodItems = [
-    { id: 1, name: "Rainbow Salad Bowl", image: Food1 },
-    { id: 2, name: "Raw Veggie Burger", image: Food2 },
-    { id: 3, name: "Mac & Cheese Plate", image: Food3 },
-    { id: 4, name: "Crusted Protein Plate", image: Food4 },
-    { id: 5, name: "Raw Vegan Burgers", image: Food5 },
-    { id: 6, name: "Stuffed Bell Peppers", image: Food6 },
-    { id: 7, name: "Loaded Nachos", image: Food7 },
-    { id: 8, name: "Gourmet Meal Box", image: Food8 },
-    { id: 9, name: "Nacho Supreme", image: Food9 },
+    { id: 1, name: "Rainbow Salad", image: Food1 },
+    { id: 2, name: "Mock Chiken Salad Wrap", image: Food2 },
+    { id: 3, name: "Crabcakes", image: Food3 },
+    { id: 4, name: "Seafood Celebration", image: Food4 },
+    { id: 5, name: "Carolina Black Bean Burger With Side Salad", image: Food5 },
+    { id: 6, name: "Stuffed Peppers", image: Food6 },
+    { id: 7, name: "7-Layer Lasagna", image: Food7 },
+    { id: 8, name: "Personal Pan Pizza", image: Food8 },
+    { id: 9, name: "Taco Bliss Bowl", image: Food9 },
     { id: 10, name: "Sushi Roll Platter", image: Food10 },
     { id: 11, name: "Raw Vegan Pizza", image: Food11 },
     { id: 12, name: "Avocado Sushi Rolls", image: Food12 }
