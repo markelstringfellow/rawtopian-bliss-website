@@ -24,7 +24,7 @@ function HomePage() {
       id: 1,
       name: "Rainbow Salad",
       image: Food1,
-      description: "This colorful medley of raw power and great taste is 95% Raw with 2oz of cooked Quinoa for added protein and that cooked food texture all presented on a bed of organic Spring Mix. A rainbow of plantbased color, enzyme rich, great tasting, and complemented with a 2oz tub of Jalapeño crisps and a Golden Goddess dressing."
+      description: "This colorful medley of raw power and great taste is 95% Raw with 2oz of cooked Quinoa for added protein and that 'cooked food texture' all presented on a bed of organic Spring Mix. A rainbow of plantbased color, enzyme rich, great tasting, and complemented with a 2oz tub of Jalapeño crisps and a Golden Goddess dressing."
     },
     {
       id: 2,
