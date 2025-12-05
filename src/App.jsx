@@ -17,6 +17,7 @@ import Food9 from './assets/Food9.JPG';
 import Food10 from './assets/Food10.JPG';
 
 import GetDelivered from './GetDelivered';
+import GetShipped from './GetShipped';
 
 function HomePage() {
   const foodItems = [
@@ -115,7 +116,7 @@ function HomePage() {
             <p>Experience the sensual side of healthy living</p>
             <div className="hero-buttons">
               <a href="/get-delivered" className="hero-button primary">Get Delivered</a>
-              <button className="hero-button secondary">Get Shipped</button>
+              <a href="/get-shipped" className="hero-button secondary">Get Shipped</a>
             </div>
           </div>
         </div>
@@ -194,6 +195,7 @@ function App() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/get-delivered" element={<GetDelivered />} />
+      <Route path="/get-shipped" element={<GetShipped />} />
     </Routes>
   );
 }
