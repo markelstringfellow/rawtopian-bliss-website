@@ -220,24 +220,26 @@ function GetDelivered() {
   const [orderComplete, setOrderComplete] = useState(false);
 
   const foodItems = [
-    { id: 1, name: "Rainbow Salad", image: Food1 },
-    { id: 2, name: "Mock Chiken Salad Wrap", image: Food2 },
-    { id: 3, name: "Crabcakes", image: Food3 },
-    { id: 4, name: "Seafood Celebration", image: Food4 },
-    { id: 5, name: "Carolina Black Bean Burger With Side Salad", image: Food5 },
-    { id: 6, name: "Stuffed Peppers", image: Food6 },
-    { id: 7, name: "7-Layer Lasagna", image: Food7 },
-    { id: 8, name: "Personal Pan Pizza", image: Food8 },
-    { id: 9, name: "Taco Bliss Bowl", image: Food9 },
-    { id: 10, name: "Sushi Roll Platter", image: Food10 },
-    { id: 11, name: "Raw Vegan Pizza", image: Food11 },
-    { id: 12, name: "Avocado Sushi Rolls", image: Food12 }
+    { id: 1, name: "Rainbow Salad", image: Food1, price: 14.99 },
+    { id: 2, name: "Mock Chiken Salad Wrap", image: Food2, price: 14.99 },
+    { id: 3, name: "Crabcakes", image: Food3, price: 15.99 },
+    { id: 4, name: "Seafood Celebration", image: Food4, price: 16.99 },
+    { id: 5, name: "Carolina Black Bean Burger With Side Salad", image: Food5, price: 14.99 },
+    { id: 6, name: "Stuffed Peppers", image: Food6, price: 15.99 },
+    { id: 7, name: "7-Layer Lasagna", image: Food7, price: 18.50 },
+    { id: 8, name: "Personal Pan Pizza", image: Food8, price: 14.99 },
+    { id: 9, name: "Taco Bliss Bowl", image: Food9, price: 15.99 },
+    { id: 10, name: "Sushi Roll Platter", image: Food10, price: 13.00 },
+    { id: 11, name: "Raw Vegan Pizza", image: Food11, price: 14.99 },
+    { id: 12, name: "Avocado Sushi Rolls", image: Food12, price: 13.00 }
   ];
 
-  const locations = ['Charlotte', 'Rock Hill', 'Columbia'];
+
+  const locations = ['Charlotte', 'Rock Hill', 'Columbia', 'Sumter', 'Bamberg'];
   const packages = [
     { name: 'Pick 6', count: 6, price: 99 },
-    { name: 'Pick 12', count: 12, price: 149 }
+    { name: 'Pick 12', count: 12, price: 175 },
+    { name: 'A La Carte', count: Infinity, price: 0 }
   ];
 
   const handleItemChange = (itemId, change) => {
@@ -261,6 +263,12 @@ function GetDelivered() {
 
   const getPrice = () => {
     const pkg = packages.find(p => p.name === selectedPackage);
+    if (pkg && pkg.name === 'A La Carte') {
+      return foodItems.reduce((total, item) => {
+        const quantity = selectedItems[item.id] || 0;
+        return total + (quantity * item.price);
+      }, 0).toFixed(2);
+    }
     return pkg ? pkg.price : 0;
   };
 
@@ -274,8 +282,13 @@ function GetDelivered() {
       return;
     }
 
-    if (getTotalSelectedItems() !== getMaxItems()) {
+    if (selectedPackage !== 'A La Carte' && getTotalSelectedItems() !== getMaxItems()) {
       alert(`Please select exactly ${getMaxItems()} items for your ${selectedPackage} package`);
+      return;
+    }
+    
+    if (selectedPackage === 'A La Carte' && getTotalSelectedItems() === 0) {
+      alert('Please select at least one item for your A La Carte order.');
       return;
     }
 
@@ -371,7 +384,7 @@ function GetDelivered() {
               >
                 <h3>{pkg.name}</h3>
                 <p className="package-price">${pkg.price}</p>
-                <p className="package-description">Choose {pkg.count} delicious items</p>
+                <p className="package-description">{pkg.name === 'A La Carte' ? 'Order any quantity' : `Choose ${pkg.count} delicious items`}</p>
               </div>
             ))}
           </div>
@@ -379,7 +392,12 @@ function GetDelivered() {
 
         {/* Food Selection */}
         {selectedPackage && (
-          <div className="food-selection-section">
+            <div className="package-details">
+              {selectedPackage === 'A La Carte' && (
+                <p className="a-la-carte-notice">Prices are per item. Total price will be calculated at checkout.</p>
+              )}
+            </div>
+            <div className="food-selection-section">
             <h2>Select Your Items</h2>
             <p className="selection-counter">
               Selected: {getTotalSelectedItems()} / {getMaxItems()}
@@ -390,6 +408,9 @@ function GetDelivered() {
                 <div key={item.id} className="food-selection-item">
                   <img src={item.image} alt={item.name} />
                   <h3>{item.name}</h3>
+                  {selectedPackage === 'A La Carte' && (
+                    <p className="item-price-display">${item.price.toFixed(2)}</p>
+                  )}
                   <div className="quantity-controls">
                     <button 
                       className="quantity-btn minus"
@@ -404,7 +425,7 @@ function GetDelivered() {
                     <button 
                       className="quantity-btn plus"
                       onClick={() => handleItemChange(item.id, 1)}
-                      disabled={!canAddMore()}
+                      disabled={selectedPackage !== 'A La Carte' && !canAddMore()}
                     >
                       +
                     </button>
@@ -414,7 +435,6 @@ function GetDelivered() {
             </div>
           </div>
         )}
-
         {/* Comments Section */}
         <div className="comments-section">
           <label htmlFor="comments">Questions or Special Requests:</label>

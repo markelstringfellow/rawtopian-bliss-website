@@ -126,7 +126,7 @@ function HomePage() {
 
       {/* Food Showcase Section */}
       <section id="menu" className="food-showcase">
-        <h2>Our Rawtopian Delights</h2>
+        <h2>Pick Your Meal Plan Item</h2>
         <p className="food-showcase-subtitle">Indulge in nature's finest creations</p>
         
         <div className="food-grid">
@@ -136,7 +136,7 @@ function HomePage() {
               <div className="food-item-info">
                 <h3 className="food-item-title">{item.name}</h3>
                 <p className="food-item-description">{item.description}</p>
-                <button className="order-button">Order Now</button>
+                <a href="/get-delivered" className="order-button">Order Now</a>
               </div>
             </div>
           ))}
