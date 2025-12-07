@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 // import { loadStripe } from '@stripe/stripe-js';
 // import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import './GetDelivered.css';
-import RawtopianTransparentLogo from './assets/RawtopianFinalLogotransparent.png'; // CORRECTED PATH
+import RawtopianTransparentLogo from './assets/RawtopianFinalLogotransparent.png';
 
 // CORRECTED IMPORTS: Changed from '../assets/FoodX.JPG' to './assets/FoodX.JPG'
 import Food1 from './assets/Food1.JPG';
