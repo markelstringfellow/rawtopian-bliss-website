@@ -47,8 +47,8 @@ const GetDelivered = () => {
 // FIXED SYNTAX ERROR AND APPLIED PRICE UPDATE
   const locations = ['Charlotte', 'Rock Hill', 'Columbia'];
   const packages = [
-    { name: 'Pick 6', count: 6, price: 99, isA La Carte: false },
-    { name: 'Pick 12', count: 12, price: 175, isA La Carte: false }, // Price updated to $175
+    { name: 'Pick 6', count: 6, price: 99, 'isA La Carte': false },
+    { name: 'Pick 12', count: 12, price: 175, 'isA La Carte': false }, // Price updated to $175
     // A La Carte package will be added in a later step
   ];
 
@@ -60,7 +60,7 @@ const GetDelivered = () => {
 
     const totalSelected = Object.values(selectedItems).reduce((sum, count) => sum + count, 0) + change;
     
-    if (selectedPackage && !selectedPackage.isA La Carte && totalSelected > selectedPackage.count) return;
+    if (selectedPackage && !selectedPackage['isA La Carte'] && totalSelected > selectedPackage.count) return;
 
     setSelectedItems(prev => {
       const newItems = { ...prev };
@@ -75,7 +75,7 @@ const GetDelivered = () => {
 
   const totalSelectedItems = Object.values(selectedItems).reduce((sum, count) => sum + count, 0);
   const isSelectionComplete = selectedPackage && totalSelectedItems === selectedPackage.count;
-  const totalCost = selectedPackage && selectedPackage.isA La Carte
+  const totalCost = selectedPackage && selectedPackage['isA La Carte']
     ? Object.entries(selectedItems).reduce((sum, [id, count]) => {
         const item = foodItems.find(i => i.id === parseInt(id));
         return sum + (item ? item.price * count : 0);
@@ -96,7 +96,7 @@ const GetDelivered = () => {
   };
 
   const handleProceedToCheckout = () => {
-    if (!selectedPackage || !selectedLocation || (!selectedPackage.isA La Carte && totalSelectedItems !== selectedPackage.count)) {
+    if (!selectedPackage || !selectedLocation || (!selectedPackage['isA La Carte'] && totalSelectedItems !== selectedPackage.count)) {
       alert("Please select a package, a delivery location, and the correct number of items.");
       return;
     }
@@ -180,7 +180,7 @@ const GetDelivered = () => {
               <div className="food-selection-section">
                 <h2>2. Select Your Items</h2>
                 <p className="selection-counter">
-                  Selected: {totalSelectedItems} {selectedPackage.isA La Carte ? '' : `/ ${selectedPackage.count}`}
+                  Selected: {totalSelectedItems} {selectedPackage['isA La Carte'] ? '' : `/ ${selectedPackage.count}`}
                 </p>
                 <div className="food-grid">
                   {foodItems.map(item => (
@@ -191,7 +191,7 @@ const GetDelivered = () => {
                       <div className="item-controls">
                         <button onClick={() => handleItemChange(item.id, -1)} disabled={!selectedItems[item.id]}>-</button>
                         <span>{selectedItems[item.id] || 0}</span>
-                        <button onClick={() => handleItemChange(item.id, 1)} disabled={!selectedPackage.isA La Carte && totalSelectedItems >= selectedPackage.count}>+</button>
+                        <button onClick={() => handleItemChange(item.id, 1)} disabled={!selectedPackage['isA La Carte'] && totalSelectedItems >= selectedPackage.count}>+</button>
                       </div>
                     </div>
                   ))}
