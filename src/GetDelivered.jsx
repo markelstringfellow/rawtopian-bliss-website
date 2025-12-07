@@ -2,19 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './GetDelivered.css';
 
-// Placeholder imports for food images (12 total)
-import Food1 from '../assets/Food1.JPG';
-import Food2 from '../assets/Food2.JPG';
-import Food3 from '../assets/Food3.JPG';
-import Food4 from '../assets/Food4.JPG';
-import Food5 from '../assets/Food5.JPG';
-import Food6 from '../assets/Food6.JPG';
-import Food7 from '../assets/Food7.JPG';
-import Food8 from '../assets/Food8.JPG';
-import Food9 from '../assets/Food9.JPG';
-import Food10 from '../assets/Food10.JPG';
-import Food11 from '../assets/Food11.JPG';
-import Food12 from '../assets/Food12.JPG';
+// CORRECTED IMPORTS: Changed from '../assets/FoodX.JPG' to './assets/FoodX.JPG'
+import Food1 from './assets/Food1.JPG';
+import Food2 from './assets/Food2.JPG';
+import Food3 from './assets/Food3.JPG';
+import Food4 from './assets/Food4.JPG';
+import Food5 from './assets/Food5.JPG';
+import Food6 from './assets/Food6.JPG';
+import Food7 from './assets/Food7.JPG';
+import Food8 from './assets/Food8.JPG';
+import Food9 from './assets/Food9.JPG';
+import Food10 from './assets/Food10.JPG';
+import Food11 from './assets/Food11.JPG';
+import Food12 from './assets/Food12.JPG';
 
 const foodItems = [
   { id: 1, name: "Rainbow Salad", image: Food1 },
@@ -53,7 +53,7 @@ const GetDelivered = () => {
       setTotalPrice(99);
     } else if (selectedPackage === 'pick12') {
       setMaxMeals(12);
-      // Original price before update
+      // Price updated to $175
       setTotalPrice(175); 
     }
     // Reset selected meals if the package changes and the current selection is too large
