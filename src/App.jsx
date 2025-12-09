@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom'; // Removed BrowserRouter
 import GetDelivered from './GetDelivered';
 import GetShipped from './GetShipped';
 import './App.css'; 
@@ -19,8 +19,8 @@ import Food11 from './assets/Food11.JPG';
 import Food12 from './assets/Food12.JPG';
 
 // Placeholder imports for other assets
-import RawtopianFinalLogo from './assets/RawtopianFinalLogo.png';
-import RawtopianTransparentLogo from './assets/RawtopianFinalLogotransparent.png';
+import RawtopianFinalLogo from './assets/RawtopianFinalLogo.PNG';
+import RawtopianTransparentLogo from './assets/RawtopianFinalLogotransparent.PNG';
 import SaaShalom from './assets/SaaShalom.JPG';
 
 const foodItems = [
@@ -88,7 +88,7 @@ const Home = () => (
     <section id="about" className="about-section">
       <div className="about-content">
         <h2 className="section-title">About Chef Saa Shalom</h2>
-        <p>Chef Saa Shalom is a passionate advocate for raw, vegan living. With years of experience, she crafts meals that are not only incredibly healthy but also bursting with flavor. Her missio[...]
+        <p>Chef Saa Shalom is a passionate advocate for raw, vegan living. With years of experience, she crafts meals that are not only incredibly healthy but also bursting with flavor. Her mission is to make healthy eating accessible and enjoyable for everyone.</p>
         <p>Rawtopian Bliss is the culmination of her journey, offering a menu designed to nourish your body and delight your soul.</p>
       </div>
       <div className="about-image">
