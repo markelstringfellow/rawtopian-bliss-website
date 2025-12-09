@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 // import { loadStripe } from '@stripe/stripe-js';
 // import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import './GetDelivered.css';
-import RawtopianTransparentLogo from './assets/RawtopianFinalLogotransparent.png';
+import RawtopianTransparentLogo from './assets/RawtopianFinalLogotransparent.JPG'; // <-- CHANGED TO .JPG
 
 // CORRECTED IMPORTS: Changed from '../assets/FoodX.JPG' to './assets/FoodX.JPG'
 import Food1 from './assets/Food1.JPG';
@@ -45,7 +45,7 @@ const GetDelivered = () => {
   ];
 
 // FIXED SYNTAX ERROR AND APPLIED PRICE UPDATE
-  const locations = ['Charlotte', 'Rock Hill', 'Columbia'];
+  const locations = ['Charlotte', 'Rock Hill', 'Columbia', 'Sumter', 'Bamberg']; // <-- UPDATED CITIES
   const packages = [
     { name: 'Pick 6', count: 6, price: 99, 'isA La Carte': false },
     { name: 'Pick 12', count: 12, price: 175, 'isA La Carte': false }, // Price updated to $175
