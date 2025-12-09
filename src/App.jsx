@@ -19,8 +19,8 @@ import Food11 from './assets/Food11.JPG';
 import Food12 from './assets/Food12.JPG';
 
 // Placeholder imports for other assets
-import RawtopianFinalLogo from './assets/RawtopianFinalLogo.PNG';
-import RawtopianTransparentLogo from './assets/RawtopianFinalLogotransparent.PNG';
+import RawtopianFinalLogo from './assets/RawtopianFinalLogo.JPG'; // <-- CHANGED TO .JPG
+import RawtopianTransparentLogo from './assets/RawtopianFinalLogotransparent.JPG'; // <-- CHANGED TO .JPG
 import SaaShalom from './assets/SaaShalom.JPG';
 
 const foodItems = [
