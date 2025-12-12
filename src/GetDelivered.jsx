@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 // import { loadStripe } from '@stripe/stripe-js';
 // import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import './GetDelivered.css';
-import RawtopianTransparentLogo from './assets/RawtopianFinalLogotransparent.JPG'; // <-- CHANGED TO .JPG
+import RawtopianTransparentLogo from './assets/RawtopianFinalLogotransparent.png'; // <-- CRITICAL FIX: .png
 
-// CORRECTED IMPORTS: Changed from '../assets/FoodX.JPG' to './assets/FoodX.JPG'
+// CORRECTED IMPORTS: Using .JPG (uppercase) for food images
 import Food1 from './assets/Food1.JPG';
 import Food2 from './assets/Food2.JPG';
 import Food3 from './assets/Food3.JPG';
@@ -44,12 +44,12 @@ const GetDelivered = () => {
     { id: 12, name: "Avocado Sushi Rolls", image: Food12, price: 13.00 }
   ];
 
-// FIXED SYNTAX ERROR AND APPLIED PRICE UPDATE
-  const locations = ['Charlotte', 'Rock Hill', 'Columbia', 'Sumter', 'Bamberg']; // <-- UPDATED CITIES
+// UPDATED: Cities and Packages (Pick 12 price and A La Carte added)
+  const locations = ['Charlotte', 'Rock Hill', 'Columbia', 'Sumter', 'Bamberg'];
   const packages = [
-    { name: 'Pick 6', count: 6, price: 99, 'isA La Carte': false },
-    { name: 'Pick 12', count: 12, price: 175, 'isA La Carte': false }, // Price updated to $175
-    // A La Carte package will be added in a later step
+    { name: 'Pick 6', count: 6, price: 99, 'isA La Carte': false, description: 'Choose 6 meals for a fixed price.' },
+    { name: 'Pick 12', count: 12, price: 175, 'isA La Carte': false, description: 'Choose 12 meals for a fixed price.' }, // Price updated to $175
+    { name: 'A La Carte', count: 0, price: 0, 'isA La Carte': true, description: 'Order any number of meals at individual prices.' }, // A La Carte added
   ];
 
   const handleItemChange = (itemId, change) => {
@@ -60,6 +60,7 @@ const GetDelivered = () => {
 
     const totalSelected = Object.values(selectedItems).reduce((sum, count) => sum + count, 0) + change;
     
+    // Logic to prevent over-selection for Pick 6/12
     if (selectedPackage && !selectedPackage['isA La Carte'] && totalSelected > selectedPackage.count) return;
 
     setSelectedItems(prev => {
@@ -75,12 +76,18 @@ const GetDelivered = () => {
 
   const totalSelectedItems = Object.values(selectedItems).reduce((sum, count) => sum + count, 0);
   const isSelectionComplete = selectedPackage && totalSelectedItems === selectedPackage.count;
-  const totalCost = selectedPackage && selectedPackage['isA La Carte']
-    ? Object.entries(selectedItems).reduce((sum, [id, count]) => {
+  
+  // Calculate total cost based on package type
+  const totalCost = useMemo(() => {
+    if (selectedPackage && selectedPackage['isA La Carte']) {
+      return Object.entries(selectedItems).reduce((sum, [id, count]) => {
         const item = foodItems.find(i => i.id === parseInt(id));
         return sum + (item ? item.price * count : 0);
-      }, 0)
-    : selectedPackage ? selectedPackage.price : 0;
+      }, 0);
+    }
+    return selectedPackage ? selectedPackage.price : 0;
+  }, [selectedPackage, selectedItems, foodItems]);
+
 
   const handlePackageSelect = (pkg) => {
     setSelectedPackage(pkg);
@@ -96,8 +103,16 @@ const GetDelivered = () => {
   };
 
   const handleProceedToCheckout = () => {
-    if (!selectedPackage || !selectedLocation || (!selectedPackage['isA La Carte'] && totalSelectedItems !== selectedPackage.count)) {
-      alert("Please select a package, a delivery location, and the correct number of items.");
+    if (!selectedPackage || !selectedLocation) {
+      alert("Please select a package and a delivery location.");
+      return;
+    }
+    if (!selectedPackage['isA La Carte'] && totalSelectedItems !== selectedPackage.count) {
+      alert(`Please select exactly ${selectedPackage.count} items for the ${selectedPackage.name} package.`);
+      return;
+    }
+    if (selectedPackage['isA La Carte'] && totalSelectedItems === 0) {
+      alert("Please select at least one item for the A La Carte package.");
       return;
     }
     if (!customerInfo.name || !customerInfo.email || !customerInfo.phone) {
@@ -148,7 +163,7 @@ const GetDelivered = () => {
             </div>
 
             <div className="location-select-section">
-              <h2>Select Your Location:</h2>
+              <h2>1. Select Your Location:</h2>
               <div className="location-select">
                 <select id="location" value={selectedLocation} onChange={handleLocationSelect}>
                   <option value="" disabled>Choose a city...</option>
@@ -160,8 +175,9 @@ const GetDelivered = () => {
             </div>
 
             <div className="package-selection">
-              <h2>Select Your Package:</h2>
-              <div className="package-options">
+              <h2>2. Select Your Package:</h2>
+              {/* Package options are now side-by-side */}
+              <div className="package-options three-wide"> 
                 {packages.map(pkg => (
                   <div
                     key={pkg.name}
@@ -169,8 +185,12 @@ const GetDelivered = () => {
                     onClick={() => handlePackageSelect(pkg)}
                   >
                     <h3>{pkg.name}</h3>
-                    <p className="package-price">${pkg.price}</p>
-                    <p>{pkg.count} Meals</p>
+                    {pkg['isA La Carte'] ? (
+                      <p className="package-price">Individual Pricing</p>
+                    ) : (
+                      <p className="package-price">${pkg.price}</p>
+                    )}
+                    <p className="package-description">{pkg.description}</p>
                   </div>
                 ))}
               </div>
@@ -178,20 +198,28 @@ const GetDelivered = () => {
 
             {selectedPackage && (
               <div className="food-selection-section">
-                <h2>2. Select Your Items</h2>
+                <h2>3. Select Your Items</h2>
                 <p className="selection-counter">
-                  Selected: {totalSelectedItems} {selectedPackage['isA La Carte'] ? '' : `/ ${selectedPackage.count}`}
+                  {selectedPackage['isA La Carte'] ? (
+                    `Total Items: ${totalSelectedItems}`
+                  ) : (
+                    `Selected: ${totalSelectedItems} / ${selectedPackage.count}`
+                  )}
                 </p>
                 <div className="food-grid">
                   {foodItems.map(item => (
                     <div key={item.id} className="food-card">
                       <img src={item.image} alt={item.name} />
                       <h3>{item.name}</h3>
-                      <p className="food-price">${item.price.toFixed(2)}</p>
+                      {/* Show price for A La Carte or just the item name for packages */}
+                      {selectedPackage['isA La Carte'] && <p className="food-price">${item.price.toFixed(2)}</p>}
                       <div className="item-controls">
                         <button onClick={() => handleItemChange(item.id, -1)} disabled={!selectedItems[item.id]}>-</button>
                         <span>{selectedItems[item.id] || 0}</span>
-                        <button onClick={() => handleItemChange(item.id, 1)} disabled={!selectedPackage['isA La Carte'] && totalSelectedItems >= selectedPackage.count}>+</button>
+                        <button 
+                          onClick={() => handleItemChange(item.id, 1)} 
+                          disabled={!selectedPackage['isA La Carte'] && totalSelectedItems >= selectedPackage.count}
+                        >+</button>
                       </div>
                     </div>
                   ))}
@@ -201,7 +229,7 @@ const GetDelivered = () => {
 
             {selectedPackage && selectedLocation && (
               <div className="customer-info-section">
-                <h2>3. Customer Information</h2>
+                <h2>4. Customer Information & Checkout</h2>
                 <div className="customer-info-form">
                   <h3>Customer Details</h3>
                   <input
