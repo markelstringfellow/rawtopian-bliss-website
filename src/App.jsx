@@ -1,10 +1,10 @@
 import React from 'react';
-import { Routes, Route, Link } from 'react-router-dom'; // Removed BrowserRouter
+import { Routes, Route, Link } from 'react-router-dom';
 import GetDelivered from './GetDelivered';
 import GetShipped from './GetShipped';
 import './App.css'; 
 
-// Placeholder imports for food images (12 total)
+// CORRECTED IMPORTS based on your repository screenshot:
 import Food1 from './assets/Food1.JPG';
 import Food2 from './assets/Food2.JPG';
 import Food3 from './assets/Food3.JPG';
@@ -18,9 +18,9 @@ import Food10 from './assets/Food10.JPG';
 import Food11 from './assets/Food11.JPG';
 import Food12 from './assets/Food12.JPG';
 
-// Placeholder imports for other assets
-import RawtopianFinalLogo from './assets/RawtopianFinalLogo.JPG'; // <-- CHANGED TO .JPG
-import RawtopianTransparentLogo from './assets/RawtopianFinalLogotransparent.JPG'; // <-- CHANGED TO .JPG
+// CRITICAL FIX: Corrected to use .png (lowercase) extension
+import RawtopianFinalLogo from './assets/RawtopianFinalLogo.png'; 
+import RawtopianTransparentLogo from './assets/RawtopianFinalLogotransparent.png'; 
 import SaaShalom from './assets/SaaShalom.JPG';
 
 const foodItems = [
@@ -67,7 +67,8 @@ const Home = () => (
     {/* Menu Section */}
     <section id="menu" className="menu-section">
       <h2 className="section-title">Our Menu</h2>
-      <p className="section-subtitle">Delicious, Raw, Vegan Meals</p>
+      {/* NEW HEADLINE: "Pick Your Meal Plan Item" */}
+      <p className="section-subtitle">Pick Your Meal Plan Item</p> 
       
       <div className="food-grid">
         {foodItems.map((item) => (
@@ -76,7 +77,7 @@ const Home = () => (
             <div className="food-item-info">
               <h3 className="food-item-title">{item.name}</h3>
               <p className="food-item-description">{item.description}</p>
-              {/* The button link will be updated in Phase 5 */}
+              {/* UPDATED LINK: All "Order Now" buttons link to /get-delivered */}
               <Link to="/get-delivered" className="order-btn">Order Now</Link>
             </div>
           </div>
