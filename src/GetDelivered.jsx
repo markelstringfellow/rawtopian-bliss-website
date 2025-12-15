@@ -44,12 +44,12 @@ const GetDelivered = () => {
     { id: 12, name: "Avocado Sushi Rolls", image: Food12, price: 13.00 }
   ];
 
-// UPDATED: Cities and Packages (Pick 12 price and A La Carte added)
+// UPDATED: Cities and Packages (A La Carte is now first)
   const locations = ['Charlotte', 'Rock Hill', 'Columbia', 'Sumter', 'Bamberg'];
   const packages = [
+    { name: 'A La Carte', count: 0, price: 0, 'isA La Carte': true, description: 'Order any number of meals at individual prices.' }, // A La Carte first
     { name: 'Pick 6', count: 6, price: 99, 'isA La Carte': false, description: 'Choose 6 meals for a fixed price.' },
     { name: 'Pick 12', count: 12, price: 175, 'isA La Carte': false, description: 'Choose 12 meals for a fixed price.' }, // Price updated to $175
-    { name: 'A La Carte', count: 0, price: 0, 'isA La Carte': true, description: 'Order any number of meals at individual prices.' }, // A La Carte added
   ];
 
   const handleItemChange = (itemId, change) => {
@@ -158,12 +158,13 @@ const GetDelivered = () => {
         ) : (
           <>
             <div className="delivery-hero">
-              <h1>GET DELIVERED</h1>
+              <h1 className="delivery-title">GET DELIVERED</h1>
               <p>Fresh, raw vegan meals delivered to your door</p>
             </div>
 
-            <div className="location-select-section">
-              <h2>1. Select Your Location:</h2>
+            {/* Restored clean layout for location selection */}
+            <div className="location-select-section clean-card">
+              <h2>Select Your Location:</h2>
               <div className="location-select">
                 <select id="location" value={selectedLocation} onChange={handleLocationSelect}>
                   <option value="" disabled>Choose a city...</option>
@@ -175,8 +176,8 @@ const GetDelivered = () => {
             </div>
 
             <div className="package-selection">
-              <h2>2. Select Your Package:</h2>
-              {/* Package options are now side-by-side */}
+              <h2>Select Your Package:</h2>
+              {/* Package options are side-by-side */}
               <div className="package-options three-wide"> 
                 {packages.map(pkg => (
                   <div
@@ -198,7 +199,7 @@ const GetDelivered = () => {
 
             {selectedPackage && (
               <div className="food-selection-section">
-                <h2>3. Select Your Items</h2>
+                <h2>Select Your Items</h2>
                 <p className="selection-counter">
                   {selectedPackage['isA La Carte'] ? (
                     `Total Items: ${totalSelectedItems}`
@@ -229,7 +230,7 @@ const GetDelivered = () => {
 
             {selectedPackage && selectedLocation && (
               <div className="customer-info-section">
-                <h2>4. Customer Information & Checkout</h2>
+                <h2>Customer Information & Checkout</h2>
                 <div className="customer-info-form">
                   <h3>Customer Details</h3>
                   <input
