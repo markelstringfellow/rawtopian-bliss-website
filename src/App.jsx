@@ -51,8 +51,14 @@ const Home = () => (
       </nav>
     </header>
 
-    {/* Hero Section */}
+    {/* Hero Section - Restored Video Placeholder */}
     <section className="hero-section">
+      {/* Placeholder for the video element. If you have a video file, replace the source below. */}
+      <video autoPlay loop muted className="hero-video">
+        {/* Assuming your video file is named 'hero-video.mp4' and is in the assets folder */}
+        <source src="./assets/hero-video.mp4" type="video/mp4" /> 
+        Your browser does not support the video tag.
+      </video>
       <div className="hero-content">
         <img src={RawtopianFinalLogo} alt="Rawtopian Bliss Logo" className="hero-logo" />
         <h1 className="hero-title">Rawtopian Bliss</h1>
@@ -76,6 +82,7 @@ const Home = () => (
             <img src={item.image} alt={item.name} />
             <div className="food-item-info">
               <h3 className="food-item-title">{item.name}</h3>
+              {/* Descriptions are present here */}
               <p className="food-item-description">{item.description}</p>
               {/* UPDATED LINK: All "Order Now" buttons link to /get-delivered */}
               <Link to="/get-delivered" className="order-btn">Order Now</Link>
