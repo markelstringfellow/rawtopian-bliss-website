@@ -48,8 +48,8 @@ const GetDelivered = () => {
   const locations = ['Charlotte', 'Rock Hill', 'Columbia', 'Sumter', 'Bamberg'];
   const packages = [
     { name: 'A La Carte', count: 0, price: 0, 'isA La Carte': true, description: 'Order any number of meals at individual prices.' }, // A La Carte first
-    { name: 'Pick 6', count: 6, price: 99, 'isA La Carte': false, description: 'Choose 6 meals for a fixed price.' },
-    { name: 'Pick 12', count: 12, price: 175, 'isA La Carte': false, description: 'Choose 12 meals for a fixed price.' }, // Price updated to $175
+    { name: 'Pick 6', count: 6, price: 99, 'isA La Carte': false, description: 'Choose 6 delicious items.' },
+    { name: 'Pick 12', count: 12, price: 175, 'isA La Carte': false, description: 'Choose 12 delicious items.' }, // Price updated to $175
   ];
 
   const handleItemChange = (itemId, change) => {
@@ -162,7 +162,7 @@ const GetDelivered = () => {
               <p>Fresh, raw vegan meals delivered to your door</p>
             </div>
 
-            {/* Restored clean layout for location selection */}
+            {/* Restored clean layout for location selection to match screenshot */}
             <div className="location-select-section clean-card">
               <h2>Select Your Location:</h2>
               <div className="location-select">
