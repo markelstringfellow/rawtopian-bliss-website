@@ -163,10 +163,10 @@ const GetDelivered = () => {
               <p className="delivery-subtitle">Fresh, raw vegan meals delivered to your door</p>
             </div>
 
-            {/* Restored clean layout for location selection to match screenshot */}
+            {/* Restored clean layout for location selection to match screenshot 6 */}
             <div className="location-select-section clean-card">
               <h2>Select Your Location:</h2>
-              <div className="location-select">
+              <div className="location-select-dropdown"> {/* Added a wrapper for the dropdown */}
                 <select id="location" value={selectedLocation} onChange={handleLocationSelect}>
                   <option value="" disabled>Choose a city...</option>
                   {locations.map(loc => (
