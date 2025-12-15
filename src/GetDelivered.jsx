@@ -159,7 +159,8 @@ const GetDelivered = () => {
           <>
             <div className="delivery-hero">
               <h1 className="delivery-title">GET DELIVERED</h1>
-              <p>Fresh, raw vegan meals delivered to your door</p>
+              {/* Centered Subtitle */}
+              <p className="delivery-subtitle">Fresh, raw vegan meals delivered to your door</p>
             </div>
 
             {/* Restored clean layout for location selection to match screenshot */}
