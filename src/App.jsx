@@ -51,14 +51,17 @@ const Home = () => (
       </nav>
     </header>
 
-    {/* Hero Section - Restored Video Placeholder and Buttons */}
+    {/* Hero Section - Restored Video Embed and Buttons */}
     <section className="hero-section">
-      {/* Placeholder for the video element. If you have a video file, replace the source below. */}
-      <video autoPlay loop muted className="hero-video">
-        {/* Assuming your video file is named 'hero-video.mp4' and is in the assets folder */}
-        <source src="./assets/hero-video.mp4" type="video/mp4" /> 
-        Your browser does not support the video tag.
-      </video>
+      {/* YouTube Video Embed */}
+      <iframe 
+        className="hero-video"
+        src="https://www.youtube.com/embed/Ek-0_z1WGDM?autoplay=1&mute=1&loop=1&playlist=Ek-0_z1WGDM" 
+        title="YouTube video player" 
+        frameBorder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        allowFullScreen
+      ></iframe>
       <div className="hero-content">
         <img src={RawtopianFinalLogo} alt="Rawtopian Bliss Logo" className="hero-logo" />
         <h1 className="hero-title">Rawtopian Bliss</h1>
@@ -74,17 +77,17 @@ const Home = () => (
     {/* Menu Section */}
     <section id="menu" className="menu-section">
       <h2 className="section-title">Our Menu</h2>
-      {/* NEW HEADLINE: "Pick Your Meal Plan Item" */}
-      <p className="section-subtitle">Pick Your Meal Plan Item</p> 
+      {/* UPDATED HEADLINE: "Pick you A La Carte Item Here" */}
+      <p className="section-subtitle">Pick you A La Carte Item Here</p> 
       
       <div className="food-grid">
-        {foodItems.map((item) => (
+        {foodItems.map((item ) => (
           <div key={item.id} className="food-item">
             <img src={item.image} alt={item.name} />
             <div className="food-item-info">
               <h3 className="food-item-title">{item.name}</h3>
               <p className="food-item-description">{item.description}</p>
-              {/* Restored Order Now button class for colored block style */}
+              {/* Confirmed Order Now button class for colored block style */}
               <Link to="/get-delivered" className="order-btn">Order Now</Link>
             </div>
           </div>
@@ -92,10 +95,11 @@ const Home = () => (
       </div>
     </section>
 
-    {/* About Section */}
+    {/* About Section - Restored Header and Simplified Structure for Flow */}
     <section id="about" className="about-section">
+      {/* UPDATED HEADER: "About the Chef" */}
+      <h2 className="section-title">About the Chef</h2> 
       <div className="about-content">
-        <h2 className="section-title">About Chef Saa Shalom</h2>
         <p>Chef Saa Shalom is a passionate advocate for raw, vegan living. With years of experience, she crafts meals that are not only incredibly healthy but also bursting with flavor. Her mission is to make healthy eating accessible and enjoyable for everyone.</p>
         <p>Rawtopian Bliss is the culmination of her journey, offering a menu designed to nourish your body and delight your soul.</p>
       </div>
