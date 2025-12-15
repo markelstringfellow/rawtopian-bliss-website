@@ -51,11 +51,11 @@ const Home = () => (
       </nav>
     </header>
 
-    {/* Hero Section - Restored Video Embed and Buttons */}
+    {/* Hero Section - Full-Screen Video Embed and Buttons */}
     <section className="hero-section">
-      {/* YouTube Video Embed */}
+      {/* YouTube Video Embed - Structured for full-screen background */}
       <iframe 
-        className="hero-video"
+        className="hero-video-background" // Assuming your CSS targets this for full-screen
         src="https://www.youtube.com/embed/Ek-0_z1WGDM?autoplay=1&mute=1&loop=1&playlist=Ek-0_z1WGDM" 
         title="YouTube video player" 
         frameBorder="0" 
@@ -77,8 +77,8 @@ const Home = () => (
     {/* Menu Section */}
     <section id="menu" className="menu-section">
       <h2 className="section-title">Our Menu</h2>
-      {/* UPDATED HEADLINE: "Pick you A La Carte Item Here" */}
-      <p className="section-subtitle">Pick you A La Carte Item Here</p> 
+      {/* CORRECTED HEADLINE: "Pick Your A La Carte Item Here" */}
+      <p className="section-subtitle">Pick Your A La Carte Item Here</p> 
       
       <div className="food-grid">
         {foodItems.map((item ) => (
@@ -95,16 +95,18 @@ const Home = () => (
       </div>
     </section>
 
-    {/* About Section - Restored Header and Simplified Structure for Flow */}
+    {/* About Section - Restored Side-by-Side Layout */}
     <section id="about" className="about-section">
-      {/* UPDATED HEADER: "About the Chef" */}
-      <h2 className="section-title">About the Chef</h2> 
-      <div className="about-content">
-        <p>Chef Saa Shalom is a passionate advocate for raw, vegan living. With years of experience, she crafts meals that are not only incredibly healthy but also bursting with flavor. Her mission is to make healthy eating accessible and enjoyable for everyone.</p>
-        <p>Rawtopian Bliss is the culmination of her journey, offering a menu designed to nourish your body and delight your soul.</p>
-      </div>
-      <div className="about-image">
-        <img src={SaaShalom} alt="Chef Saa Shalom" />
+      {/* UPDATED HEADER: "About the Chef" - Assuming CSS centers this */}
+      <h2 className="section-title centered-header">About the Chef</h2> 
+      <div className="about-container"> {/* New container for side-by-side layout */}
+        <div className="about-image">
+          <img src={SaaShalom} alt="Chef Saa Shalom" />
+        </div>
+        <div className="about-content">
+          <p>Chef Saa Shalom is a passionate advocate for raw, vegan living. With years of experience, she crafts meals that are not only incredibly healthy but also bursting with flavor. Her mission is to make healthy eating accessible and enjoyable for everyone.</p>
+          <p>Rawtopian Bliss is the culmination of her journey, offering a menu designed to nourish your body and delight your soul.</p>
+        </div>
       </div>
     </section>
 
