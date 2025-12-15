@@ -53,23 +53,27 @@ const Home = () => (
 
     {/* Hero Section - Full-Screen Video Embed and Buttons */}
     <section className="hero-section">
-      {/* YouTube Video Embed - Structured for full-screen background */}
-      <iframe 
-        className="hero-video-background" // Assuming your CSS targets this for full-screen
-        src="https://www.youtube.com/embed/Ek-0_z1WGDM?autoplay=1&mute=1&loop=1&playlist=Ek-0_z1WGDM" 
-        title="YouTube video player" 
-        frameBorder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-        allowFullScreen
-      ></iframe>
+      {/* Corrected structure for full-screen video background */}
+      <div className="video-background">
+        <iframe 
+          className="background-video" // Class name from your CSS
+          src="https://www.youtube.com/embed/Ek-0_z1WGDM?autoplay=1&mute=1&loop=1&playlist=Ek-0_z1WGDM" 
+          title="YouTube video player" 
+          frameBorder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          allowFullScreen
+        ></iframe>
+        <div className="video-overlay"></div> {/* Added overlay as defined in your CSS */}
+      </div>
+      
       <div className="hero-content">
         <img src={RawtopianFinalLogo} alt="Rawtopian Bliss Logo" className="hero-logo" />
         <h1 className="hero-title">Rawtopian Bliss</h1>
         <p className="hero-subtitle">Nourish Your Body, Delight Your Soul</p>
-        {/* Restored Get Delivered/Get Shipped buttons on the homepage */}
+        {/* Restored Get Delivered/Get Shipped buttons on the homepage with CORRECT class names */}
         <div className="hero-buttons">
-          <Link to="/get-delivered" className="hero-btn primary">Get Delivered</Link>
-          <Link to="/get-shipped" className="hero-btn secondary">Get Shipped</Link>
+          <Link to="/get-delivered" className="hero-button primary">Get Delivered</Link>
+          <Link to="/get-shipped" className="hero-button secondary">Get Shipped</Link>
         </div>
       </div>
     </section>
@@ -88,22 +92,22 @@ const Home = () => (
               <h3 className="food-item-title">{item.name}</h3>
               <p className="food-item-description">{item.description}</p>
               {/* Confirmed Order Now button class for colored block style */}
-              <Link to="/get-delivered" className="order-btn">Order Now</Link>
+              <Link to="/get-delivered" className="order-button">Order Now</Link>
             </div>
           </div>
         ))}
       </div>
     </section>
 
-    {/* About Section - Restored Side-by-Side Layout */}
+    {/* About Section - Restored Side-by-Side Layout with CORRECT class name */}
     <section id="about" className="about-section">
       {/* UPDATED HEADER: "About the Chef" - Assuming CSS centers this */}
       <h2 className="section-title centered-header">About the Chef</h2> 
-      <div className="about-container"> {/* New container for side-by-side layout */}
+      <div className="about-content"> {/* Class name from your CSS for grid layout */}
         <div className="about-image">
           <img src={SaaShalom} alt="Chef Saa Shalom" />
         </div>
-        <div className="about-content">
+        <div className="about-text"> {/* Added about-text wrapper for text styling */}
           <p>Chef Saa Shalom is a passionate advocate for raw, vegan living. With years of experience, she crafts meals that are not only incredibly healthy but also bursting with flavor. Her mission is to make healthy eating accessible and enjoyable for everyone.</p>
           <p>Rawtopian Bliss is the culmination of her journey, offering a menu designed to nourish your body and delight your soul.</p>
         </div>
