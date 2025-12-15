@@ -51,7 +51,7 @@ const Home = () => (
       </nav>
     </header>
 
-    {/* Hero Section - Restored Video Placeholder */}
+    {/* Hero Section - Restored Video Placeholder and Buttons */}
     <section className="hero-section">
       {/* Placeholder for the video element. If you have a video file, replace the source below. */}
       <video autoPlay loop muted className="hero-video">
@@ -63,6 +63,7 @@ const Home = () => (
         <img src={RawtopianFinalLogo} alt="Rawtopian Bliss Logo" className="hero-logo" />
         <h1 className="hero-title">Rawtopian Bliss</h1>
         <p className="hero-subtitle">Nourish Your Body, Delight Your Soul</p>
+        {/* Restored Get Delivered/Get Shipped buttons on the homepage */}
         <div className="hero-buttons">
           <Link to="/get-delivered" className="hero-btn primary">Get Delivered</Link>
           <Link to="/get-shipped" className="hero-btn secondary">Get Shipped</Link>
@@ -82,9 +83,8 @@ const Home = () => (
             <img src={item.image} alt={item.name} />
             <div className="food-item-info">
               <h3 className="food-item-title">{item.name}</h3>
-              {/* Descriptions are present here */}
               <p className="food-item-description">{item.description}</p>
-              {/* UPDATED LINK: All "Order Now" buttons link to /get-delivered */}
+              {/* Restored Order Now button class for colored block style */}
               <Link to="/get-delivered" className="order-btn">Order Now</Link>
             </div>
           </div>
