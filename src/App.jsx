@@ -60,7 +60,7 @@ const Home = () => (
           src="https://www.youtube.com/embed/Ek-0_z1WGDM?autoplay=1&mute=1&loop=1&playlist=Ek-0_z1WGDM" 
           title="YouTube video player" 
           frameBorder="0" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          allow="accelerometer; autoplay; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
           allowFullScreen
         ></iframe>
         <div className="video-overlay"></div> {/* Added overlay as defined in your CSS */}
@@ -68,8 +68,6 @@ const Home = () => (
       
       {/* Content Layer (z-index: 3 ) - ONLY BUTTONS REMAIN */}
       <div className="hero-content">
-        {/* REMOVED: Logo and Text elements to resolve white box issue */}
-        
         {/* Restored Get Delivered/Get Shipped buttons on the homepage with CORRECT class names */}
         <div className="hero-buttons">
           <Link to="/get-delivered" className="hero-button primary">Get Delivered</Link>
