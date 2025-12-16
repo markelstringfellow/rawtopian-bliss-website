@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 import GetDelivered from './GetDelivered';
-import GetShipped from './GetShipped';
+import GetShipped from './GetShipped'; 
 import './App.css'; 
 
 // CORRECTED IMPORTS based on your repository screenshot:
@@ -69,10 +69,16 @@ const Home = () => (
       {/* Content Layer (z-index: 3 ) - ONLY BUTTONS REMAIN */}
       <div className="hero-content">
         {/* Restored Get Delivered/Get Shipped buttons on the homepage with CORRECT class names */}
+        <div className="hero-content-wrapper">
+        <h1 className="hero-headline">DO YOU LIKE IT RAW?</h1>
+        <p className="hero-subtitle">
+          100% Vegan, 80% Raw, Organic & Non-GMO, No Soy, Gluten-Free options
+        </p>
         <div className="hero-buttons">
-          <Link to="/get-delivered" className="hero-button primary">Get Delivered</Link>
-          <Link to="/get-shipped" className="hero-button secondary">Get Shipped</Link>
+          <Link to="/get-delivered" className="hero-button primary">GET DELIVERED</Link>
+          <Link to="/get-shipped" className="hero-button secondary">GET SHIPPED</Link>
         </div>
+      </div>
       </div>
     </section>
 
@@ -140,7 +146,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/get-delivered" element={<GetDelivered />} />
-      <Route path="/get-shipped" element={<GetShipped />} />
+      <Route path="/get-shipped" element={<GetShipped />} /> {/* <-- ADDED ROUTE */}
     </Routes>
   );
 }
