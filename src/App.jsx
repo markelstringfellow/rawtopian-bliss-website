@@ -53,19 +53,20 @@ const Home = () => (
 
     {/* Hero Section - Full-Screen Video Embed and Buttons */}
     <section className="hero-section">
-      {/* Corrected structure for full-screen video background */}
+      {/* Video Background Layer (z-index: 1) */}
       <div className="video-background">
         <iframe 
           className="background-video" // Class name from your CSS
           src="https://www.youtube.com/embed/Ek-0_z1WGDM?autoplay=1&mute=1&loop=1&playlist=Ek-0_z1WGDM" 
           title="YouTube video player" 
           frameBorder="0" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          allow="accelerometer; autoplay; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
           allowFullScreen
         ></iframe>
         <div className="video-overlay"></div> {/* Added overlay as defined in your CSS */}
       </div>
       
+      {/* Content Layer (z-index: 3 ) - This should now be correctly positioned over the video */}
       <div className="hero-content">
         <img src={RawtopianFinalLogo} alt="Rawtopian Bliss Logo" className="hero-logo" />
         <h1 className="hero-title">Rawtopian Bliss</h1>
@@ -85,7 +86,7 @@ const Home = () => (
       <p className="section-subtitle">Pick Your A La Carte Item Here</p> 
       
       <div className="food-grid">
-        {foodItems.map((item ) => (
+        {foodItems.map((item) => (
           <div key={item.id} className="food-item">
             <img src={item.image} alt={item.name} />
             <div className="food-item-info">
