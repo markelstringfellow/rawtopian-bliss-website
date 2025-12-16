@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import './GetShipped.css';
 import RawtopianTransparentLogo from './assets/RawtopianFinalLogotransparent.png';
 
-// Import new assets for shipped items
-import BlackBeanBurgers from './assets/BlackBeanBurgers.JPG';
-import SeafoodCelebration from './assets/SeafoodCelebration.JPG';
-import SheperdsPie from './assets/SheperdsPie.JPG';
-import PureProteinRawBrownies from './assets/PureProteinRawBrownies.JPG';
+// CORRECTED IMPORTS: Path now includes 'shipped/' and extension is uppercase '.JPG'
+import BlackBeanBurgers from './assets/shipped/BlackBeanBurgers.JPG';
+import SeafoodCelebration from './assets/shipped/SeafoodCelebration.JPG';
+import SheperdsPie from './assets/shipped/SheperdsPie.JPG';
+import PureProteinRawBrownies from './assets/shipped/PureProteinRawBrownies.JPG';
 
 const GetShipped = () => {
   const [addressInfo, setAddressInfo] = useState({
