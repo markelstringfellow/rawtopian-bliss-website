@@ -60,17 +60,16 @@ const Home = () => (
           src="https://www.youtube.com/embed/Ek-0_z1WGDM?autoplay=1&mute=1&loop=1&playlist=Ek-0_z1WGDM" 
           title="YouTube video player" 
           frameBorder="0" 
-          allow="accelerometer; autoplay; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
           allowFullScreen
         ></iframe>
         <div className="video-overlay"></div> {/* Added overlay as defined in your CSS */}
       </div>
       
-      {/* Content Layer (z-index: 3 ) - This should now be correctly positioned over the video */}
+      {/* Content Layer (z-index: 3 ) - ONLY BUTTONS REMAIN */}
       <div className="hero-content">
-        <img src={RawtopianFinalLogo} alt="Rawtopian Bliss Logo" className="hero-logo" />
-        <h1 className="hero-title">Rawtopian Bliss</h1>
-        <p className="hero-subtitle">Nourish Your Body, Delight Your Soul</p>
+        {/* REMOVED: Logo and Text elements to resolve white box issue */}
+        
         {/* Restored Get Delivered/Get Shipped buttons on the homepage with CORRECT class names */}
         <div className="hero-buttons">
           <Link to="/get-delivered" className="hero-button primary">Get Delivered</Link>
