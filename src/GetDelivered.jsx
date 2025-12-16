@@ -163,17 +163,20 @@ const GetDelivered = () => {
               <p className="delivery-subtitle">Fresh, raw vegan meals delivered to your door</p>
             </div>
 
-            {/* Restored clean layout for location selection to match screenshot 6 */}
-            <div className="location-select-section clean-card">
-              <h2>Select Your Location:</h2>
-              <div className="location-select-dropdown"> {/* Added a wrapper for the dropdown */}
-                <select id="location" value={selectedLocation} onChange={handleLocationSelect}>
-                  <option value="" disabled>Choose a city...</option>
-                  {locations.map(loc => (
-                    <option key={loc} value={loc}>{loc}</option>
-                  ))}
-                </select>
-              </div>
+            {/* FINAL FIX: Location selection using the correct CSS classes */}
+            <div className="selection-section"> {/* This class provides the white box/padding */}
+              <label htmlFor="location">Select Your Location:</label>
+              <select 
+                id="location" 
+                value={selectedLocation} 
+                onChange={handleLocationSelect}
+                className="delivery-select" // This class styles the dropdown itself
+              >
+                <option value="" disabled>Choose a city...</option>
+                {locations.map(loc => (
+                  <option key={loc} value={loc}>{loc}</option>
+                ))}
+              </select>
             </div>
 
             <div className="package-selection">
