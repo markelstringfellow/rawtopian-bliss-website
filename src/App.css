@@ -255,16 +255,13 @@ body {
   color: var(--color-white);
 }
 
-.main-tagline {
-  font-family: var(--font-special);
-  font-size: 6em;
-  font-weight: 900;
-  margin-bottom: 15px;
-  text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
-  color: var(--color-fast-food-yellow);
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  line-height: 1.1;
+.hero-headline {
+    font-family: var(--font-special);
+    font-size: 6em; /* <-- INCREASED SIZE TO MATCH GET DELIVERED TITLE */
+    color: var(--color-fast-food-yellow); /* Yellow color */
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
 .hero-text h2 {
