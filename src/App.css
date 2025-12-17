@@ -257,7 +257,7 @@ body {
 
 .main-tagline {
   font-family: var(--font-special);
-  font-size: 4.5em;
+  font-size: 6em;
   font-weight: 900;
   margin-bottom: 15px;
   text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
