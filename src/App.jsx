@@ -104,7 +104,7 @@ const Home = () => (
     {/* Newsletter Section */}
   <section id="newsletter" className="newsletter-section">
      <h2 className="section-header-green">Stay In Touch</h2>
-     <p className="newsletter-subtitle">Subscribe to our newsletter so we can send you offers and discounts</p>
+     <p className="newsletter-subtitle">Join our mailing list for sales, discounts and giveaways</p>
      <form className="newsletter-form">
        <input type="email" placeholder="Your@email.com" required className="newsletter-input" />
        <button type="submit" className="subscribe-button">SUBSCRIBE</button>
