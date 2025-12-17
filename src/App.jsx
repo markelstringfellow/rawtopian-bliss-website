@@ -84,10 +84,8 @@ const Home = () => (
 
     {/* Menu Section */}
     <section id="menu" className="menu-section">
-      <h2 className="section-title">Our Menu</h2>
-      {/* CORRECTED HEADLINE: "Pick Your A La Carte Item Here" */}
-      <p className="section-subtitle">Pick Your A La Carte Item Here</p> 
-      
+      <h2 className="section-header-green">Order Your A La Carte Items Here</h2>
+
       <div className="food-grid">
         {foodItems.map((item) => (
           <div key={item.id} className="food-item">
@@ -106,7 +104,7 @@ const Home = () => (
     {/* About Section - Restored Side-by-Side Layout with CORRECT class name */}
     <section id="about" className="about-section">
       {/* UPDATED HEADER: "About the Chef" - Assuming CSS centers this */}
-      <h2 className="section-title centered-header">About the Chef</h2> 
+     <h2 className="section-header-green">About the Chef</h2>
       <div className="about-content"> {/* Class name from your CSS for grid layout */}
         <div className="about-image">
           <img src={SaaShalom} alt="Chef Saa Shalom" />
