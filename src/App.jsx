@@ -103,7 +103,7 @@ const Home = () => (
       </div>
     </section>
     
-      /* About Section - New Full-Width Banner */
+     {/* About Section - New Full-Width Banner */}
 <section className="about-header-container">
   <h2 className="section-header-green centered-header">About The Chef</h2>
 </section>
