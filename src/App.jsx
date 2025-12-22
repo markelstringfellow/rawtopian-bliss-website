@@ -22,6 +22,8 @@ import Food12 from './assets/Food12.JPG';
 import RawtopianFinalLogo from './assets/RawtopianFinalLogo.png'; 
 import RawtopianTransparentLogo from './assets/RawtopianFinalLogotransparent.png'; 
 import SaaShalom from './assets/SaaShalom.JPG';
+import SaaBanner from './assets/SaaBanner.png'; // <-- ADD THIS LINE
+
 
 const foodItems = [
   { id: 1, name: "Rainbow Salad", description: "A vibrant mix of fresh, raw vegetables and a light vinaigrette.", image: Food1 },
@@ -110,20 +112,11 @@ const Home = () => (
        <button type="submit" className="subscribe-button">SUBSCRIBE</button>
      </form>
    </section>
-    {/* About Section - Restored Side-by-Side Layout with CORRECT class name */}
-    <section id="about" className="about-section">
-      {/* UPDATED HEADER: "About the Chef" - Assuming CSS centers this */}
-     <h2 className="section-header-green">About the Chef</h2>
-      <div className="about-content"> {/* Class name from your CSS for grid layout */}
-        <div className="about-image">
-          <img src={SaaShalom} alt="Chef Saa Shalom" />
-        </div>
-        <div className="about-text"> {/* Added about-text wrapper for text styling */}
-          <p>Chef Saa Shalom is a passionate advocate for raw, vegan living. With years of experience, she crafts meals that are not only incredibly healthy but also bursting with flavor. Her mission is to make healthy eating accessible and enjoyable for everyone.</p>
-          <p>Rawtopian Bliss is the culmination of her journey, offering a menu designed to nourish your body and delight your soul.</p>
-        </div>
-      </div>
+       {/* About Section - New Full-Width Banner */}
+    <section id="about" className="chef-banner-section">
+      <img src={SaaBanner} alt="Chef Saa Shalom Banner" className="chef-banner-image" />
     </section>
+
 
     {/* Contact Section */}
     <section id="contact" className="contact-section">
