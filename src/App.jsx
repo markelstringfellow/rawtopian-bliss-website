@@ -112,8 +112,10 @@ const Home = () => (
        <button type="submit" className="subscribe-button">SUBSCRIBE</button>
      </form>
    </section>
+    
        {/* About Section - New Full-Width Banner */}
     <section id="about" className="chef-banner-section">
+       <h2 className="section-header-green">About The Chef</h2>
       <img src={SaaBanner} alt="Chef Saa Shalom Banner" className="chef-banner-image" />
     </section>
 
