@@ -102,16 +102,6 @@ const Home = () => (
         ))}
       </div>
     </section>
-
-    {/* Newsletter Section */}
-  <section id="newsletter" className="newsletter-section">
-     <h2 className="section-header-green">Stay In Touch</h2>
-     <p className="newsletter-subtitle">Join our mailing list for sales, discounts and giveaways</p>
-     <form className="newsletter-form">
-       <input type="email" placeholder="Your@email.com" required className="newsletter-input" />
-       <button type="submit" className="subscribe-button">SUBSCRIBE</button>
-     </form>
-   </section>
     
       /* About Section - New Full-Width Banner */
 <section className="about-header-container">
@@ -121,6 +111,16 @@ const Home = () => (
   <img src={SaaBanner} alt="Chef Saa Shalom Banner" className="chef-banner-image" />
 </section>
 
+  {/* Newsletter Section */}
+  <section id="newsletter" className="newsletter-section">
+     <h2 className="section-header-green">Stay In Touch</h2>
+     <p className="newsletter-subtitle">Join our mailing list for sales, discounts and giveaways</p>
+     <form className="newsletter-form">
+       <input type="email" placeholder="Your@email.com" required className="newsletter-input" />
+       <button type="submit" className="subscribe-button">SUBSCRIBE</button>
+     </form>
+   </section>
+    
     {/* Contact Section */}
     <section id="contact" className="contact-section">
       <h2 className="section-title">Contact Us</h2>
