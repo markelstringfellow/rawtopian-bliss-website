@@ -113,12 +113,13 @@ const Home = () => (
      </form>
    </section>
     
-       {/* About Section - New Full-Width Banner */}
-    <section id="about" className="chef-banner-section">
-       <h2 className="section-header-green">About The Chef</h2>
-      <img src={SaaBanner} alt="Chef Saa Shalom Banner" className="chef-banner-image" />
-    </section>
-
+      /* About Section - New Full-Width Banner */
+<section className="about-header-container">
+  <h2 className="section-header-green centered-header">About The Chef</h2>
+</section>
+<section id="about" className="chef-banner-section">
+  <img src={SaaBanner} alt="Chef Saa Shalom Banner" className="chef-banner-image" />
+</section>
 
     {/* Contact Section */}
     <section id="contact" className="contact-section">
