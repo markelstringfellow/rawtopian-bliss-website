@@ -756,3 +756,24 @@ body {
 .subscribe-button:hover {
     background: linear-gradient(to bottom, #43a047, #388e3c);
 }
+/* --- Chef Banner Section --- */
+.chef-banner-section {
+    width: 100%;
+    padding: 0; /* Ensure no extra padding pushes the image */
+    margin: 0;
+    overflow: hidden;
+}
+
+.chef-banner-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* Ensures the image covers the area without distortion */
+    object-fit: cover; 
+}
+
+/* OPTIONAL: If the old yellow background is still showing, add this to remove it */
+.about-section {
+    background-color: transparent !important; 
+    padding: 0 !important;
+}
