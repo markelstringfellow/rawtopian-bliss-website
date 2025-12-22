@@ -777,3 +777,14 @@ body {
     background-color: transparent !important; 
     padding: 0 !important;
 }
+/* --- About Header Container --- */
+.about-header-container {
+    padding-top: 40px; /* Add space above the header */
+    text-align: center;
+}
+
+/* General Centered Header Styling */
+.centered-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
