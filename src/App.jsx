@@ -45,13 +45,18 @@ const Home = () => (
     {/* Header */}
     <header className="App-header">
       <nav className="horizontal-nav">
-        <a href="#menu" className="nav-link">MENU</a>
-        <a href="#about" className="nav-link">ABOUT</a>
+        <div className="nav-links-desktop"> {/* <-- NEW WRAPPER */}
+          <a href="#menu" className="nav-link">MENU</a>
+          <a href="#about" className="nav-link">ABOUT</a>
+        </div>
         <img src={RawtopianTransparentLogo} alt="Rawtopian Bliss Logo" className="center-logo" />
-        <a href="#classes" className="nav-link">CHEF CLASSES</a>
-        <a href="#contact" className="nav-link">CONTACT</a>
+<div className="nav-links-desktop">
+  <a href="#classes" className="nav-link">CHEF CLASSES</a>
+  <a href="#contact" className="nav-link">CONTACT</a>
+</div>
+</nav>
+
       </nav>
-    </header>
 
     {/* Hero Section - Full-Screen Video Embed and Buttons */}
     <section className="hero-section">
