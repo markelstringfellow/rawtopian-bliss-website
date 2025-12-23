@@ -157,7 +157,6 @@ const Home = () => (
       <p className="copyright">&copy; {new Date( ).getFullYear()} Rawtopian Bliss. All rights reserved.</p>
     </footer>
 
-  </div>
 );
 
 function App() {
