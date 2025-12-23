@@ -860,6 +860,21 @@ body {
 .social-icon.youtube {
     background-image: url('./assets/youtube_logo_green.png');
 }
+/* --- Payment Logos General Styling (MISSING BLOCK) --- */
+.payment-logos {
+    display: flex;
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.payment-logo {
+    display: block;
+    width: 40px; 
+    height: 25px; 
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
 
 /* --- Payment Logo Placeholders (FINAL CODE) --- */
 .payment-logo.visa {
