@@ -886,14 +886,6 @@ body {
 .payment-logo.discover {
     background-image: url('./assets/discover_logo_gray.png');
 }
-.payment-logo.amex {
-    /* We didn't have an Amex image, so we'll use a placeholder until you provide one */
-    background-image: url('https://via.placeholder.com/40x25/999999?text=AMEX' );
-}
-.payment-logo.paypal {
-    /* We didn't have a PayPal image, so we'll use a placeholder until you provide one */
-    background-image: url('https://via.placeholder.com/40x25/999999?text=PP' );
-}
 .payment-logo.applepay {
     background-image: url('./assets/applepay_logo_gray.png');
 }
