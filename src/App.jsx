@@ -134,13 +134,40 @@ const Home = () => (
     </section>
 
     {/* Footer */}
-    <footer className="App-footer">
-      <img src={RawtopianTransparentLogo} alt="Rawtopian Bliss Logo" className="footer-logo" />
-      <p>&copy; {new Date().getFullYear()} Rawtopian Bliss. All rights reserved.</p>
-      <div className="social-links">
-        {/* Add social media links here */}
+        <footer className="App-footer">
+      <div className="footer-links">
+        <Link to="/about-us">ABOUT US</Link>
+        <Link to="/contact-us">CONTACT US</Link>
+        <Link to="/faqs">FAQ'S</Link>
+        <Link to="/privacy-policy">PRIVACY POLICY</Link>
+        <Link to="/terms-conditions">TERMS & CONDITIONS</Link>
+        <Link to="/terms-of-service">TERMS OF SERVICE</Link>
+        <Link to="/refund-policy">REFUND POLICY</Link>
+        <Link to="/do-not-sell">DO NOT SELL MY PERSONAL INFORMATION</Link>
       </div>
+
+      {/* Rawtopian Bliss Logo in the middle */}
+      <img src={RawtopianTransparentLogo} alt="Rawtopian Bliss Logo" className="footer-logo" />
+
+      <div className="social-icons">
+        {/* Social Icons with your actual URLs */}
+        <a href="https://www.instagram.com/rawtopianbliss/" target="_blank" rel="noopener noreferrer" className="social-icon instagram"></a>
+        <a href="https://www.facebook.com/saa.bey.52/" target="_blank" rel="noopener noreferrer" className="social-icon facebook"></a>
+        <a href="#" target="_blank" rel="noopener noreferrer" className="social-icon youtube"></a> {/* YouTube Placeholder */}
+      </div>
+
+      <div className="payment-logos">
+        {/* Payment Logos - These will be styled with CSS background images */}
+        <span className="payment-logo visa"></span>
+        <span className="payment-logo mastercard"></span>
+        <span className="payment-logo discover"></span>
+        <span className="payment-logo amex"></span>
+        <span className="payment-logo paypal"></span>
+        <span className="payment-logo applepay"></span>
+      </div>
+      <p className="copyright">&copy; {new Date( ).getFullYear()} Rawtopian Bliss. All rights reserved.</p>
     </footer>
+
   </div>
 );
 
