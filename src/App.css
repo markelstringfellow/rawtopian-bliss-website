@@ -895,12 +895,24 @@ body {
     color: #555;
     font-size: 0.8em;
 }
+/* --- Desktop Navigation Structure --- */
+.nav-links-desktop {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
 /* ==========================================================================
    MOBILE-SPECIFIC STYLES (Max Width 768px)
    ========================================================================== */
 @media (max-width: 768px) {
     
-    /* --- Header Fixes (Error 1 & Goal: Sticky/Small Header) --- */
+       /* Hide the navigation links on mobile */
+    .nav-links-desktop {
+        display: none;
+    }
+ 
+  /* --- Header Fixes (Error 1 & Goal: Sticky/Small Header) --- */
     .App-header {
         padding: 10px 5px; /* Reduce padding */
         position: sticky; /* Make it stick to the top */
