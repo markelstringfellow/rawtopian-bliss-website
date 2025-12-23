@@ -156,6 +156,8 @@ const Home = () => (
       </div>
       <p className="copyright">&copy; {new Date( ).getFullYear()} Rawtopian Bliss. All rights reserved.</p>
     </footer>
+  </div> // Closes the main <div className="App">
+); // Closes the return statement
 
 );
 
