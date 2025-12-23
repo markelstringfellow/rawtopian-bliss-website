@@ -157,9 +157,9 @@ const Home = () => (
       <p className="copyright">&copy; {new Date( ).getFullYear()} Rawtopian Bliss. All rights reserved.</p>
     </footer>
   </div> // Closes the main <div className="App">
-); // Closes the return statement
+) // Closes the return statement
+}; // Closes the const Home = () => {
 
-);
 
 function App() {
   return (
