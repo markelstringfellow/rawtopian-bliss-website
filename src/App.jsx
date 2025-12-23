@@ -56,8 +56,6 @@ const Home = () => (
 </div>
 </nav>
 
-      </nav>
-
     {/* Hero Section - Full-Screen Video Embed and Buttons */}
     <section className="hero-section">
       {/* Video Background Layer (z-index: 1) */}
