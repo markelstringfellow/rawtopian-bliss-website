@@ -788,3 +788,103 @@ body {
     text-align: center;
     margin-bottom: 20px;
 }
+/* --- Footer Section --- */
+.App-footer {
+    /* Gradient background from your image, using your cream color */
+    background: linear-gradient(to bottom, #e8e4c7, #fcf8e3); 
+    padding: 40px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 20px;
+    margin-bottom: 15px;
+    max-width: 800px;
+}
+
+.footer-links a {
+    color: #555; /* Darker text color for contrast */
+    text-decoration: none;
+    font-size: 0.85em;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: var(--color-logo-green); /* Use your brand green on hover */
+}
+
+.footer-logo {
+    max-width: 150px; /* Adjust size as needed */
+    height: auto;
+    margin: 10px 0;
+}
+
+.social-icons {
+    display: flex;
+    gap: 20px;
+    margin: 15px 0;
+}
+
+.social-icon {
+    display: block;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: var(--color-logo-green); /* Green background for icons */
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: transform 0.3s;
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
+}
+
+/* --- Social Icon Placeholders (FINAL CODE) --- */
+.social-icon.instagram {
+    background-image: url('./assets/instagram_logo_green.png');
+}
+.social-icon.facebook {
+    background-image: url('./assets/facebook_logo_green.png');
+}
+.social-icon.youtube {
+    background-image: url('./assets/youtube_logo_green.png');
+}
+
+/* --- Payment Logo Placeholders (FINAL CODE) --- */
+.payment-logo.visa {
+    background-image: url('./assets/visa_logo_gray.png');
+}
+.payment-logo.mastercard {
+    background-image: url('./assets/mastercard_logo_gray.png');
+}
+.payment-logo.discover {
+    background-image: url('./assets/discover_logo_gray.png');
+}
+.payment-logo.amex {
+    /* We didn't have an Amex image, so we'll use a placeholder until you provide one */
+    background-image: url('https://via.placeholder.com/40x25/999999?text=AMEX' );
+}
+.payment-logo.paypal {
+    /* We didn't have a PayPal image, so we'll use a placeholder until you provide one */
+    background-image: url('https://via.placeholder.com/40x25/999999?text=PP' );
+}
+.payment-logo.applepay {
+    background-image: url('./assets/applepay_logo_gray.png');
+}
+
+
+.copyright {
+    color: #555;
+    font-size: 0.8em;
+}
