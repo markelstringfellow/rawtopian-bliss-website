@@ -161,8 +161,6 @@ const Home = () => (
         <span className="payment-logo visa"></span>
         <span className="payment-logo mastercard"></span>
         <span className="payment-logo discover"></span>
-        <span className="payment-logo amex"></span>
-        <span className="payment-logo paypal"></span>
         <span className="payment-logo applepay"></span>
       </div>
       <p className="copyright">&copy; {new Date( ).getFullYear()} Rawtopian Bliss. All rights reserved.</p>
