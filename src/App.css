@@ -895,3 +895,89 @@ body {
     color: #555;
     font-size: 0.8em;
 }
+/* ==========================================================================
+   MOBILE-SPECIFIC STYLES (Max Width 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+    
+    /* --- Header Fixes (Error 1 & Goal: Sticky/Small Header) --- */
+    .App-header {
+        padding: 10px 5px; /* Reduce padding */
+        position: sticky; /* Make it stick to the top */
+        top: 0;
+        z-index: 100; /* Ensure it stays above other content */
+    }
+
+    .horizontal-nav {
+        /* Stack the logo and links vertically or hide links for a cleaner look */
+        flex-direction: column; 
+        gap: 5px;
+    }
+
+    .center-logo {
+        max-width: 100px; /* Reduce logo size */
+    }
+
+    .nav-link {
+        font-size: 0.7em; /* Reduce link font size */
+    }
+
+    /* --- Hero Section Fixes (Error 2 & 3) --- */
+    .hero-section {
+        height: 60vh; /* Reduce the height of the hero section */
+    }
+
+    .hero-headline {
+        /* Error 2: Headline is too big */
+        font-size: 2.5em; 
+        margin-bottom: 5px;
+    }
+
+    .hero-subtitle {
+        font-size: 1em;
+        padding: 0 10px;
+    }
+
+    .hero-buttons {
+        /* Error 3: Buttons are off-screen. Stack them vertically. */
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .hero-button {
+        padding: 10px 20px; /* Smaller buttons */
+        font-size: 0.9em;
+    }
+
+    /* --- Menu Section Fixes (Error 4 & Goal: Single Column) --- */
+    .food-grid {
+        /* Goal: Switch to a single column for food items */
+        grid-template-columns: 1fr; 
+    }
+
+    .food-item-info {
+        /* Error 4: Center the text and buttons */
+        text-align: center; 
+    }
+
+    /* --- General Section Padding --- */
+    .menu-section, .about-header-container, .chef-banner-section, .newsletter-section {
+        padding: 30px 10px; /* Reduce vertical padding for a tighter feel */
+    }
+    
+    /* Ensure the banner image scales correctly */
+    .chef-banner-image {
+        height: 150px; /* Set a fixed height for a small banner look */
+        object-fit: cover;
+    }
+
+    /* --- Footer Fixes --- */
+    .footer-links {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .footer-links a {
+        font-size: 0.75em;
+    }
+}
