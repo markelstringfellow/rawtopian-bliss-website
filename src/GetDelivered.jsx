@@ -18,6 +18,7 @@ import Food9 from './assets/Food9.JPG';
 import Food10 from './assets/Food10.JPG';
 import Food11 from './assets/Food11.JPG';
 import Food12 from './assets/Food12.JPG';
+import CashAppQR from './assets/cashapp_qr.jpg';
 
 // CheckoutForm removed for testing
 
@@ -120,7 +121,8 @@ const GetDelivered = () => {
       return;
     }
     // For now, we skip the Stripe checkout part to stabilize the app
-    alert(`Order Summary:\nPackage: ${selectedPackage.name}\nCity: ${selectedLocation}\nTotal Price: $${totalCost.toFixed(2)}\n(Stripe payment integration would go here)`);
+    alert(`Order Summary:\nPackage: ${selectedPackage.name}\nCity: ${selectedLocation}\nTotal Price: $${totalCost.toFixed(2)}\n\nPlease send payment via Cash App to $VeganLife007 and include your name and order details in the payment note.`);
+    setOrderComplete(true);
     // setShowCheckout(true);
   };
 
@@ -147,9 +149,11 @@ const GetDelivered = () => {
       <main className="main-content">
         {orderComplete ? (
           <div className="order-complete-message">
-            <h2>Order Complete!</h2>
-            <p>Thank you for your order. You will receive a confirmation email shortly.</p>
-            <p>Total Paid: ${totalCost.toFixed(2)}</p>
+            <h2>Order Submitted!</h2>
+            <p>Thank you for your order. Please send payment via Cash App to <strong>$VeganLife007</strong></p>
+            <p>Include your name and order details in the payment note.</p>
+            <p>Total Amount: ${totalCost.toFixed(2)}</p>
+            <Link to="/" className="return-home-button">Return to Home</Link>
           </div>
         ) : showCheckout ? (
           <div className="checkout-section">
@@ -233,39 +237,56 @@ const GetDelivered = () => {
             )}
 
             {selectedPackage && selectedLocation && (
-              <div className="customer-info-section">
-                <h2>Customer Information & Checkout</h2>
-                <div className="customer-info-form">
-                  <h3>Customer Details</h3>
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Full Name"
-                    value={customerInfo.name}
-                    onChange={handleCustomerInfoChange}
-                    required
-                  />
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Email Address"
-                    value={customerInfo.email}
-                    onChange={handleCustomerInfoChange}
-                    required
-                  />
-                  <input
-                    type="tel"
-                    name="phone"
-                    placeholder="Phone Number"
-                    value={customerInfo.phone}
-                    onChange={handleCustomerInfoChange}
-                    required
-                  />
+              <>
+                <div className="customer-info-section">
+                  <h2>Customer Information</h2>
+                  <div className="customer-info-form">
+                    <h3>Customer Details</h3>
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="Full Name"
+                      value={customerInfo.name}
+                      onChange={handleCustomerInfoChange}
+                      required
+                    />
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Email Address"
+                      value={customerInfo.email}
+                      onChange={handleCustomerInfoChange}
+                      required
+                    />
+                    <input
+                      type="tel"
+                      name="phone"
+                      placeholder="Phone Number"
+                      value={customerInfo.phone}
+                      onChange={handleCustomerInfoChange}
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="payment-section">
+                  <h2>Payment</h2>
+                  <div className="payment-container">
+                    <div className="payment-info">
+                      <h3>Order Total: ${totalCost.toFixed(2)}</h3>
+                      <p className="payment-instructions">Send payment via Cash App to <strong>$VeganLife007</strong></p>
+                      <p className="payment-note">Please include your name and order details in the Cash App payment note.</p>
+                    </div>
+                    <div className="qr-code-container">
+                      <p className="qr-label">Scan to Pay:</p>
+                      <img src={CashAppQR} alt="Cash App QR Code" className="qr-code" />
+                    </div>
+                  </div>
                   <button onClick={handleProceedToCheckout} className="checkout-button">
-                    Proceed to Checkout - ${totalCost.toFixed(2)}
+                    Confirm Order - ${totalCost.toFixed(2)}
                   </button>
                 </div>
-              </div>
+              </>
             )}
           </>
         )}
