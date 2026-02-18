@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import './GetShipped.css';
 import RawtopianTransparentLogo from './assets/RawtopianFinalLogotransparent.png';
+import CashAppQR from './assets/cashapp_qr.jpg';
 
 // CORRECTED IMPORTS: Path now includes 'shipped/' and extension is uppercase '.JPG'
 import BlackBeanBurgers from './assets/shipped/BlackBeanBurgers.JPG';
@@ -162,8 +163,8 @@ const GetShipped = () => {
       return;
     }
     
-    alert(`Shipped Order Summary:\nTotal Price: $${totalCost.toFixed(2)}\n(Stripe payment integration would go here)`);
-    // setShowCheckout(true);
+    alert(`Shipped Order Summary:\nTotal Price: $${totalCost.toFixed(2)}\n\nPlease send payment via Cash App to $VeganLife007 and include your name and order details in the payment note.`);
+    setOrderComplete(true);
   };
 
   return (
@@ -181,9 +182,11 @@ const GetShipped = () => {
       <main className="main-content">
         {orderComplete ? (
           <div className="order-complete-message">
-            <h2>Order Complete!</h2>
-            <p>Thank you for your shipped order. You will receive a confirmation email shortly.</p>
-            <p>Total Paid: ${totalCost.toFixed(2)}</p>
+            <h2>Order Submitted!</h2>
+            <p>Thank you for your shipped order. Please send payment via Cash App to <strong>$VeganLife007</strong></p>
+            <p>Include your name and order details in the payment note.</p>
+            <p>Total Amount: ${totalCost.toFixed(2)}</p>
+            <Link to="/" className="return-home-button">Return to Home</Link>
           </div>
         ) : showCheckout ? (
           <div className="checkout-section">
@@ -263,7 +266,7 @@ const GetShipped = () => {
 
             {/* Customer Info Section */}
             <div className="customer-info-section">
-              <h2>Customer Information & Checkout</h2>
+              <h2>Customer Information</h2>
               <div className="customer-info-form">
                 <h3>Customer Details</h3>
                 <input
@@ -290,10 +293,26 @@ const GetShipped = () => {
                   onChange={handleCustomerInfoChange}
                   required
                 />
-                <button onClick={handleProceedToCheckout} className="checkout-button">
-                  Proceed to Checkout - ${totalCost.toFixed(2)}
-                </button>
               </div>
+            </div>
+
+            {/* Payment Section */}
+            <div className="payment-section">
+              <h2>Payment</h2>
+              <div className="payment-container">
+                <div className="payment-info">
+                  <h3>Order Total: ${totalCost.toFixed(2)}</h3>
+                  <p className="payment-instructions">Send payment via Cash App to <strong>$VeganLife007</strong></p>
+                  <p className="payment-note">Please include your name and order details in the Cash App payment note.</p>
+                </div>
+                <div className="qr-code-container">
+                  <p className="qr-label">Scan to Pay:</p>
+                  <img src={CashAppQR} alt="Cash App QR Code" className="qr-code" />
+                </div>
+              </div>
+              <button onClick={handleProceedToCheckout} className="checkout-button">
+                Confirm Order - ${totalCost.toFixed(2)}
+              </button>
             </div>
           </>
         )}
