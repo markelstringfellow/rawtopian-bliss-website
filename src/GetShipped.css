@@ -274,3 +274,181 @@
     grid-template-columns: 1fr;
   }
 }
+
+
+/* Cash App Payment Section */
+.payment-section {
+  background: white;
+  padding: 40px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 12px rgba(218, 41, 28, 0.1);
+}
+
+.payment-section h2 {
+  font-family: var(--font-special);
+  font-size: 3em;
+  color: var(--color-fast-food-red);
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 900;
+}
+
+.payment-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.payment-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.payment-info h3 {
+  font-family: var(--font-special);
+  font-size: 2.5em;
+  color: var(--color-fast-food-red);
+  margin-bottom: 20px;
+  font-weight: 900;
+}
+
+.payment-instructions {
+  font-family: var(--font-main);
+  font-size: 1.3em;
+  color: #333;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.payment-instructions strong {
+  color: var(--color-fast-food-red);
+  font-weight: bold;
+}
+
+.payment-note {
+  font-family: var(--font-body);
+  font-size: 1.1em;
+  color: #666;
+  margin-bottom: 0;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+.qr-code-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f9f9f9;
+  padding: 30px;
+  border-radius: 15px;
+  border: 2px solid var(--color-fast-food-yellow);
+}
+
+.qr-label {
+  font-family: var(--font-main);
+  font-size: 1.3em;
+  color: var(--color-fast-food-red);
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.qr-code {
+  width: 250px;
+  height: 250px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Order Complete Message */
+.order-complete-message {
+  background: white;
+  padding: 60px 40px;
+  border-radius: 15px;
+  text-align: center;
+  margin: 40px;
+  box-shadow: 0 4px 12px rgba(218, 41, 28, 0.1);
+}
+
+.order-complete-message h2 {
+  font-family: var(--font-special);
+  font-size: 3em;
+  color: var(--color-fast-food-red);
+  margin-bottom: 20px;
+  font-weight: 900;
+}
+
+.order-complete-message p {
+  font-family: var(--font-body);
+  font-size: 1.2em;
+  color: #333;
+  margin: 15px 0;
+  line-height: 1.6;
+}
+
+.order-complete-message strong {
+  color: var(--color-fast-food-red);
+  font-weight: bold;
+}
+
+.return-home-button {
+  display: inline-block;
+  background: var(--color-fast-food-red);
+  color: white;
+  padding: 15px 40px;
+  font-size: 1.2em;
+  font-weight: bold;
+  border-radius: 10px;
+  text-decoration: none;
+  margin-top: 30px;
+  transition: all 0.3s ease;
+  font-family: var(--font-main);
+}
+
+.return-home-button:hover {
+  background: #c41e1a;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(218, 41, 28, 0.3);
+}
+
+/* Responsive Design for Payment Section */
+@media (max-width: 768px) {
+  .payment-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .payment-section h2 {
+    font-size: 2em;
+  }
+
+  .payment-info h3 {
+    font-size: 1.8em;
+  }
+
+  .payment-instructions {
+    font-size: 1.1em;
+  }
+
+  .qr-code-container {
+    padding: 20px;
+  }
+
+  .qr-code {
+    width: 200px;
+    height: 200px;
+  }
+
+  .order-complete-message {
+    margin: 20px;
+    padding: 40px 20px;
+  }
+
+  .order-complete-message h2 {
+    font-size: 2em;
+  }
+}
