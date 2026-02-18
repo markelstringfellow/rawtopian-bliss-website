@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 // Import Assets
-import RawtopianTransparentLogo from './assets/RawtopianTransparentLogo.png';
+import RawtopianTransparentLogo from './assets/RawtopianFinalLogotransparent.png';
 import SaaShalom from './assets/SaaShalom.JPG';
 import SaaBanner from './assets/SaaBanner.png'; // <-- ADDED
 import FoodItem1 from './assets/FoodItem1.png';
