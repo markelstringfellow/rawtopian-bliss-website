@@ -1,148 +1,140 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-
-// Import Assets
-import RawtopianTransparentLogo from './assets/RawtopianTransparentLogo.png';
-import SaaShalom from './assets/SaaShalom.JPG';
-import SaaBanner from './assets/SaaBanner.png'; // <-- ADDED
-import FoodItem1 from './assets/FoodItem1.png';
-import FoodItem2 from './assets/FoodItem2.png';
-import FoodItem3 from './assets/FoodItem3.png';
-import FoodItem4 from './assets/FoodItem4.png';
-import FoodItem5 from './assets/FoodItem5.png';
-import FoodItem6 from './assets/FoodItem6.png';
-
-// Import Components (Assuming these exist or will be created)
+import { Routes, Route, Link } from 'react-router-dom';
 import GetDelivered from './GetDelivered';
-import GetShipped from './GetShipped';
+import GetShipped from './GetShipped'; 
+import './App.css'; 
 
-// Data for Menu Items
-const menuItems = [
-  { id: 1, name: 'Raw Pizza', description: 'A delicious, guilt-free raw pizza with cashew cheese and fresh veggies.', price: '15.00', image: FoodItem1 },
-  { id: 2, name: 'Zucchini Pasta', description: 'Spiralized zucchini noodles tossed in a creamy avocado pesto sauce.', price: '14.00', image: FoodItem2 },
-  { id: 3, name: 'Taco Salad', description: 'A vibrant salad with walnut meat, pico de gallo, and a spicy dressing.', price: '13.00', image: FoodItem3 },
-  { id: 4, name: 'Key Lime Pie', description: 'A tangy and sweet raw key lime pie with a pecan crust.', price: '8.00', image: FoodItem4 },
-  { id: 5, name: 'Green Smoothie', description: 'A powerful blend of spinach, kale, banana, and superfoods.', price: '9.00', image: FoodItem5 },
-  { id: 6, name: 'Raw Burger', description: 'A hearty veggie patty on a lettuce bun with all the fixings.', price: '16.00', image: FoodItem6 },
+// ASSET IMPORTS - Matched exactly to your GitHub assets folder
+import Food1 from './assets/Food1.JPG';
+import Food2 from './assets/Food2.JPG';
+import Food3 from './assets/Food3.JPG';
+import Food4 from './assets/Food4.JPG';
+import Food5 from './assets/Food5.JPG';
+import Food6 from './assets/Food6.JPG';
+import Food7 from './assets/Food7.JPG';
+import Food8 from './assets/Food8.JPG';
+import Food9 from './assets/Food9.JPG';
+import Food10 from './assets/Food10.JPG';
+import Food11 from './assets/Food11.JPG';
+import Food12 from './assets/Food12.JPG';
+
+import RawtopianTransparentLogo from './assets/RawtopianFinalLogotransparent.png'; 
+import SaaShalom from './assets/SaaShalom.JPG';
+import SaaBanner from './assets/SaaBanner.png';
+
+const foodItems = [
+  { id: 1, name: "Rainbow Salad", description: "A vibrant mix of fresh, raw vegetables and a light vinaigrette.", image: Food1 },
+  { id: 2, name: "Mock Chiken Salad Wrap", description: "Savory chickpea-based 'chicken' salad wrapped in a collard green leaf.", image: Food2 },
+  { id: 3, name: "Crabcakes", description: "Delicious hearts of palm and artichoke 'crabcakes' with a spicy remoulade.", image: Food3 },
+  { id: 4, name: "Seafood Celebration", description: "A mix of marinated vegetables and seaweeds that taste like the ocean.", image: Food4 },
+  { id: 5, name: "Carolina Black Bean Burger With Side Salad", description: "A hearty black bean patty served with a side salad.", image: Food5 },
+  { id: 6, name: "Stuffed Peppers", description: "Bell peppers stuffed with a savory nut and seed filling.", image: Food6 },
+  { id: 7, name: "7-Layer Lasagna", description: "Layers of zucchini, cashew cheese, and sun-dried tomato marinara.", image: Food7 },
+  { id: 8, name: "Personal Pan Pizza", description: "A small, raw crust topped with fresh vegetables and nut cheese.", image: Food8 },
+  { id: 9, name: "Taco Bliss Bowl", description: "A bowl of seasoned walnut 'meat', salsa, and avocado on a bed of greens.", image: Food9 },
+  { id: 10, name: "Sushi Roll Platter", description: "Assortment of vegetable and nut-based sushi rolls.", image: Food10 },
+  { id: 11, name: "Raw Vegan Pizza", description: "Large raw crust pizza with a variety of fresh toppings.", image: Food11 },
+  { id: 12, name: "Avocado Sushi Roll", description: "Simple and creamy avocado sushi rolls.", image: Food12 },
 ];
 
-// Home Component
-const Home = () => {
-  return (
-    <div className="App">
-      {/* Header */}
-      <header className="App-header">
-        <nav className="horizontal-nav">
-          <div className="nav-links-desktop">
-            <a href="#menu" className="nav-link">MENU</a>
-            <a href="#about" className="nav-link">ABOUT</a>
-          </div>
-          <img src={RawtopianTransparentLogo} alt="Rawtopian Bliss Logo" className="center-logo" />
-          <div className="nav-links-desktop">
-            <a href="#classes" className="nav-link">CHEF CLASSES</a>
-            <a href="#contact" className="nav-link">CONTACT</a>
-          </div>
-        </nav>
-      </header>
+const Home = () => (
+  <div className="App">
+    <header className="App-header">
+      <nav className="horizontal-nav">
+        <a href="#menu" className="nav-link">MENU</a>
+        <a href="#about" className="nav-link">ABOUT</a>
+        <img src={RawtopianTransparentLogo} alt="Rawtopian Bliss Logo" className="center-logo" />
+        <a href="#classes" className="nav-link">CHEF CLASSES</a>
+        <a href="#contact" className="nav-link">CONTACT</a>
+      </nav>
+    </header>
 
-      {/* Hero Section */}
-      <section className="hero-section">
-        <div className="hero-content">
-          <h1 className="hero-headline">Do You Like It Raw?</h1>
-          <p className="hero-subtitle">Rawtopian Bliss is a raw, vegan meal prep service that delivers fresh, delicious, and nutrient-dense food right to your door.</p>
+    <section className="hero-section">
+      <div className="video-background">
+        <iframe 
+          className="background-video"
+          src="https://www.youtube.com/embed/Ek-0_z1WGDM?autoplay=1&mute=1&loop=1&playlist=Ek-0_z1WGDM" 
+          title="YouTube video player" 
+          frameBorder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          allowFullScreen
+        ></iframe>
+        <div className="video-overlay"></div>
+      </div>
+      
+      <div className="hero-content">
+        <div className="hero-content-wrapper">
+          <h1 className="hero-headline">DO YOU LIKE IT RAW?</h1>
+          <p className="hero-subtitle">
+            100% Vegan, 80% Raw, Organic & Non-GMO, No Soy, Gluten-Free options
+          </p>
           <div className="hero-buttons">
-            <Link to="/get-delivered" className="hero-button delivered-button">GET DELIVERED</Link>
-            <Link to="/get-shipped" className="hero-button shipped-button">GET SHIPPED</Link>
+            <Link to="/get-delivered" className="hero-button primary">GET DELIVERED</Link>
+            <Link to="/get-shipped" className="hero-button secondary">GET SHIPPED</Link>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      {/* Menu Section */}
-      <section id="menu" className="menu-section">
-        <h2 className="section-header-green">A La Carte</h2>
-        <p className="section-subtitle">Choose from our selection of fresh, handcrafted raw vegan meals.</p>
-        <div className="food-grid">
-          {menuItems.map(item => (
-            <div key={item.id} className="food-item">
-              <img src={item.image} alt={item.name} className="food-item-image" />
-              <div className="food-item-info">
-                <h3 className="food-item-name">{item.name}</h3>
-                <p className="food-item-description">{item.description}</p>
-                <p className="food-item-price">${item.price}</p>
-                <button className="order-now-button">ORDER NOW</button>
-              </div>
+    <section id="menu" className="menu-section">
+      <h2 className="section-title">Our Menu</h2>
+      <p className="section-subtitle">Pick Your A La Carte Item Here</p> 
+      <div className="food-grid">
+        {foodItems.map((item ) => (
+          <div key={item.id} className="food-item">
+            <img src={item.image} alt={item.name} />
+            <div className="food-item-info">
+              <h3 className="food-item-title">{item.name}</h3>
+              <p className="food-item-description">{item.description}</p>
+              <Link to="/get-delivered" className="order-button">Order Now</Link>
             </div>
-          ))}
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section id="about" className="about-section">
+      <h2 className="section-title centered-header">About the Chef</h2> 
+      <div className="about-content">
+        <div className="about-image">
+          <img src={SaaShalom} alt="Chef Saa Shalom" />
         </div>
-      </section>
-
-      {/* About Section Header */}
-      {/* About Section - New Full-Width Banner */}
-      <section className="about-header-container">
-        <h2 className="section-header-green centered-header">About The Chef</h2>
-      </section>
-      <section id="about" className="chef-banner-section">
-        <img src={SaaBanner} alt="Chef Saa Shalom Banner" className="chef-banner-image" />
-      </section>
-
-      {/* Newsletter Section - MOVED HERE */}
-      <section id="newsletter" className="newsletter-section">
-        <h2 className="section-header-green">Stay In Touch</h2>
-        <p className="newsletter-subtitle">Join our mailing list for sales, discounts and giveaways</p>
-        <form className="newsletter-form">
-          <input type="email" placeholder="Your@email.com" required className="newsletter-input" />
-          <button type="submit" className="subscribe-button">SUBSCRIBE</button>
-        </form>
-      </section>
-
-      {/* Footer */}
-      <footer className="App-footer">
-        <div className="footer-links">
-          <Link to="/about-us">ABOUT US</Link>
-          <Link to="/contact-us">CONTACT US</Link>
-          <Link to="/faqs">FAQ'S</Link>
-          <Link to="/privacy-policy">PRIVACY POLICY</Link>
-          <Link to="/terms-conditions">TERMS & CONDITIONS</Link>
-          <Link to="/terms-of-service">TERMS OF SERVICE</Link>
-          <Link to="/refund-policy">REFUND POLICY</Link>
-          <Link to="/do-not-sell">DO NOT SELL MY PERSONAL INFORMATION</Link>
+        <div className="about-text">
+          <p>Chef Saa Shalom is a passionate advocate for raw, vegan living. With years of experience, she crafts meals that are not only incredibly healthy but also bursting with flavor.</p>
+          <p>Rawtopian Bliss is the culmination of her journey, offering a menu designed to nourish your body and delight your soul.</p>
         </div>
+      </div>
+    </section>
 
-        {/* Rawtopian Bliss Logo in the middle */}
-        <img src={RawtopianTransparentLogo} alt="Rawtopian Bliss Logo" className="footer-logo" />
+    <section className="chef-banner-section">
+      <img src={SaaBanner} alt="Chef Saa Shalom Banner" className="chef-banner-image" />
+    </section>
 
-        <div className="social-icons">
-          {/* Social Icons with your actual URLs */}
-          <a href="https://www.instagram.com/rawtopianbliss/" target="_blank" rel="noopener noreferrer" className="social-icon instagram"></a>
-          <a href="https://www.facebook.com/saa.bey.52/" target="_blank" rel="noopener noreferrer" className="social-icon facebook"></a>
-          <a href="#" target="_blank" rel="noopener noreferrer" className="social-icon youtube"></a> {/* YouTube Placeholder */}
-        </div>
+    <section id="contact" className="contact-section">
+      <h2 className="section-title">Contact Us</h2>
+      <p className="section-subtitle">We'd love to hear from you!</p>
+      <form className="contact-form">
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+        <textarea placeholder="Your Message" rows="5" required></textarea>
+        <button type="submit" className="submit-btn">Send Message</button>
+      </form>
+    </section>
 
-        <div className="payment-logos">
-          {/* Payment Logos - These will be styled with CSS background images */}
-          <span className="payment-logo visa"></span>
-          <span className="payment-logo mastercard"></span>
-          <span className="payment-logo discover"></span>
-          <span className="payment-logo amex"></span>
-          <span className="payment-logo paypal"></span>
-          <span className="payment-logo applepay"></span>
-        </div>
-        <p className="copyright">&copy; {new Date( ).getFullYear()} Rawtopian Bliss. All rights reserved.</p>
-      </footer>
-    </div>
-  );
-};
+    <footer className="App-footer">
+      <img src={RawtopianTransparentLogo} alt="Rawtopian Bliss Logo" className="footer-logo" />
+      <p>&copy; {new Date().getFullYear()} Rawtopian Bliss. All rights reserved.</p>
+    </footer>
+  </div>
+);
 
-// App Component (Router)
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/get-delivered" element={<GetDelivered />} />
-        <Route path="/get-shipped" element={<GetShipped />} /> {/* ADDED ROUTE */}
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/get-delivered" element={<GetDelivered />} />
+      <Route path="/get-shipped" element={<GetShipped />} />
+    </Routes>
   );
 }
 
