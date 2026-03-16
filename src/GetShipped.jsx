@@ -19,8 +19,8 @@ const GetShipped = () => {
   });
   const [selectedItems, setSelectedItems] = useState({});
   const [customerInfo, setCustomerInfo] = useState({ name: '', email: '', phone: '' });
-  const [showCheckout, setShowCheckout] = useState(false);
   const [orderComplete, setOrderComplete] = useState(false);
+  const [isSending, setIsSending] = useState(false);
 
   const shippedItems = [
     { 
@@ -78,10 +78,8 @@ const GetShipped = () => {
   const handleItemChange = (itemId, change) => {
     const item = shippedItems.find(i => i.id === itemId);
     if (!item) return;
-
     const currentCount = selectedItems[itemId]?.count || 0;
     const newCount = currentCount + (change * item.multiples);
-
     if (newCount < 0) return;
 
     setSelectedItems(prev => {
@@ -89,24 +87,9 @@ const GetShipped = () => {
       if (newCount === 0) {
         delete newItems[itemId];
       } else {
-        // Find the best price for the new count
-        const bestPriceOption = item.pricing
-          .filter(p => newCount >= p.count)
-          .sort((a, b) => b.count - a.count)[0];
-        
-        // Simple calculation: total price is based on the highest count option that fits
-        // For simplicity, we'll calculate the price based on the number of *multiples* ordered
-        const unitPrice = item.pricing[0].price / item.pricing[0].count; // Price per single item
-        let calculatedPrice = newCount * unitPrice;
-
-        if (bestPriceOption) {
-            // This logic is complex for a simple component. Let's simplify to just tracking the count.
-            // The final price calculation will be done in the totalCost memo.
-        }
-
         newItems[itemId] = {
             count: newCount,
-            item: item // Store item details for easy access
+            item: item
         };
       }
       return newItems;
@@ -118,38 +101,30 @@ const GetShipped = () => {
       const item = selection.item;
       const count = selection.count;
       let itemTotal = 0;
-
-      // Find the best pricing option for the total count
       const bestPricing = item.pricing
         .filter(p => count >= p.count)
         .sort((a, b) => b.count - a.count);
 
       if (bestPricing.length > 0) {
-        // Use the best price option to calculate the total cost
         const bestOption = bestPricing[0];
         const numBestOptions = Math.floor(count / bestOption.count);
         const remainder = count % bestOption.count;
-        
         itemTotal = numBestOptions * bestOption.price;
-        
-        // For the remainder, use the smallest multiple's unit price
         if (remainder > 0) {
             const smallestOption = item.pricing.sort((a, b) => a.count - b.count)[0];
             const unitPrice = smallestOption.price / smallestOption.count;
             itemTotal += remainder * unitPrice;
         }
       } else {
-        // If count is less than the smallest multiple, use the smallest multiple's unit price
         const smallestOption = item.pricing.sort((a, b) => a.count - b.count)[0];
         const unitPrice = smallestOption.price / smallestOption.count;
         itemTotal = count * unitPrice;
       }
-
       return sum + itemTotal;
     }, 0);
   }, [selectedItems]);
 
-  const handleProceedToCheckout = () => {
+  const handleProceedToCheckout = async () => {
     if (!addressInfo.address || !addressInfo.zipcode || !addressInfo.city || !addressInfo.state) {
       alert("Please fill in all address details.");
       return;
@@ -162,9 +137,47 @@ const GetShipped = () => {
       alert("Please fill in all customer information fields.");
       return;
     }
-    
-    alert(`Shipped Order Summary:\nTotal Price: $${totalCost.toFixed(2)}\n\nPlease send payment via Cash App to $VeganLife007 and include your name and order details in the payment note.`);
-    setOrderComplete(true);
+
+    setIsSending(true);
+
+    // Format order details for the email
+    const itemDetails = Object.values(selectedItems)
+      .map(selection => `${selection.item.name} (x${selection.count})`)
+      .join(', ');
+
+    const templateParams = {
+      customer_name: customerInfo.name,
+      customer_email: customerInfo.email,
+      customer_phone: customerInfo.phone,
+      shipping_address: `${addressInfo.address}, ${addressInfo.city}, ${addressInfo.state} ${addressInfo.zipcode}`,
+      order_details: `SHIPPED ORDER | Items: ${itemDetails}`,
+      total_price: `$${totalCost.toFixed(2)}`
+    };
+
+    try {
+      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          service_id: 'service_vuvnsvn',
+          template_id: 'template_3z8k7r6',
+          user_id: 'kKsZfCMjSIOU78QG_',
+          template_params: templateParams
+        })
+      });
+
+      if (response.ok) {
+        alert(`Shipped Order Submitted Successfully!\n\nYour order details have been sent to Chef Saa. Please complete your payment of $${totalCost.toFixed(2)} via Cash App to $VeganLife007.`);
+        setOrderComplete(true);
+      } else {
+        throw new Error('Failed to send order email.');
+      }
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      alert("There was an error submitting your order. Please try again or contact us directly.");
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
@@ -188,10 +201,6 @@ const GetShipped = () => {
             <p>Total Amount: ${totalCost.toFixed(2)}</p>
             <Link to="/" className="return-home-button">Return to Home</Link>
           </div>
-        ) : showCheckout ? (
-          <div className="checkout-section">
-            {/* Checkout form JSX removed for stability */}
-          </div>
         ) : (
           <>
             <div className="delivery-hero">
@@ -199,7 +208,6 @@ const GetShipped = () => {
               <p className="delivery-subtitle">Fresh, raw vegan meals shipped directly to your door</p>
             </div>
 
-            {/* Address Form Section */}
             <div className="selection-section">
               <h2>Shipping Address:</h2>
               <div className="address-form-grid">
@@ -238,7 +246,6 @@ const GetShipped = () => {
               </div>
             </div>
 
-            {/* Food Selection Section */}
             <div className="food-selection-section">
               <h2>Select Your Shipped Items</h2>
               <p className="selection-counter">
@@ -264,7 +271,6 @@ const GetShipped = () => {
               </div>
             </div>
 
-            {/* Customer Info Section */}
             <div className="customer-info-section">
               <h2>Customer Information</h2>
               <div className="customer-info-form">
@@ -296,7 +302,6 @@ const GetShipped = () => {
               </div>
             </div>
 
-            {/* Payment Section */}
             <div className="payment-section">
               <h2>Payment</h2>
               <div className="payment-container">
@@ -310,8 +315,12 @@ const GetShipped = () => {
                   <img src={CashAppQR} alt="Cash App QR Code" className="qr-code" />
                 </div>
               </div>
-              <button onClick={handleProceedToCheckout} className="checkout-button">
-                Confirm Order - ${totalCost.toFixed(2)}
+              <button 
+                onClick={handleProceedToCheckout} 
+                className="checkout-button"
+                disabled={isSending}
+              >
+                {isSending ? "Sending Order..." : `Confirm Order - $${totalCost.toFixed(2)}`}
               </button>
             </div>
           </>
