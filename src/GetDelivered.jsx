@@ -1,9 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-// import { loadStripe } from '@stripe/stripe-js';
-// import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import './GetDelivered.css';
-import RawtopianTransparentLogo from './assets/RawtopianFinalLogotransparent.png'; // <-- CRITICAL FIX: .png
+import RawtopianTransparentLogo from './assets/RawtopianFinalLogotransparent.png'; 
 
 // CORRECTED IMPORTS: Using .JPG (uppercase) for food images
 import Food1 from './assets/Food1.JPG';
@@ -20,15 +18,13 @@ import Food11 from './assets/Food11.JPG';
 import Food12 from './assets/Food12.JPG';
 import CashAppQR from './assets/cashapp_qr.jpg';
 
-// CheckoutForm removed for testing
-
 const GetDelivered = () => {
   const [selectedPackage, setSelectedPackage] = useState(null);
   const [selectedLocation, setSelectedLocation] = useState('');
   const [selectedItems, setSelectedItems] = useState({});
   const [customerInfo, setCustomerInfo] = useState({ name: '', email: '', phone: '' });
-  const [showCheckout, setShowCheckout] = useState(false);
   const [orderComplete, setOrderComplete] = useState(false);
+  const [isSending, setIsSending] = useState(false);
 
   const foodItems = [
     { id: 1, name: "Rainbow Salad", image: Food1, price: 14.99 },
@@ -45,23 +41,18 @@ const GetDelivered = () => {
     { id: 12, name: "Avocado Sushi Rolls", image: Food12, price: 13.00 }
   ];
 
-// UPDATED: Cities and Packages (A La Carte is now first)
   const locations = ['Charlotte', 'Rock Hill', 'Columbia', 'Sumter', 'Bamberg'];
   const packages = [
-    { name: 'A La Carte', count: 0, price: 0, 'isA La Carte': true, description: 'Order any number of meals at individual prices.' }, // A La Carte first
+    { name: 'A La Carte', count: 0, price: 0, 'isA La Carte': true, description: 'Order any number of meals at individual prices.' },
     { name: 'Pick 6', count: 6, price: 99, 'isA La Carte': false, description: 'Choose 6 delicious items.' },
-    { name: 'Pick 12', count: 12, price: 175, 'isA La Carte': false, description: 'Choose 12 delicious items.' }, // Price updated to $175
+    { name: 'Pick 12', count: 12, price: 175, 'isA La Carte': false, description: 'Choose 12 delicious items.' },
   ];
 
   const handleItemChange = (itemId, change) => {
     const currentCount = selectedItems[itemId] || 0;
     const newCount = currentCount + change;
-
     if (newCount < 0) return;
-
     const totalSelected = Object.values(selectedItems).reduce((sum, count) => sum + count, 0) + change;
-    
-    // Logic to prevent over-selection for Pick 6/12
     if (selectedPackage && !selectedPackage['isA La Carte'] && totalSelected > selectedPackage.count) return;
 
     setSelectedItems(prev => {
@@ -76,9 +67,7 @@ const GetDelivered = () => {
   };
 
   const totalSelectedItems = Object.values(selectedItems).reduce((sum, count) => sum + count, 0);
-  const isSelectionComplete = selectedPackage && totalSelectedItems === selectedPackage.count;
   
-  // Calculate total cost based on package type
   const totalCost = useMemo(() => {
     if (selectedPackage && selectedPackage['isA La Carte']) {
       return Object.entries(selectedItems).reduce((sum, [id, count]) => {
@@ -89,10 +78,9 @@ const GetDelivered = () => {
     return selectedPackage ? selectedPackage.price : 0;
   }, [selectedPackage, selectedItems, foodItems]);
 
-
   const handlePackageSelect = (pkg) => {
     setSelectedPackage(pkg);
-    setSelectedItems({}); // Reset items when package changes
+    setSelectedItems({});
   };
 
   const handleLocationSelect = (e) => {
@@ -103,7 +91,7 @@ const GetDelivered = () => {
     setCustomerInfo({ ...customerInfo, [e.target.name]: e.target.value });
   };
 
-  const handleProceedToCheckout = () => {
+  const handleProceedToCheckout = async () => {
     if (!selectedPackage || !selectedLocation) {
       alert("Please select a package and a delivery location.");
       return;
@@ -120,18 +108,50 @@ const GetDelivered = () => {
       alert("Please fill in all customer information fields.");
       return;
     }
-    // For now, we skip the Stripe checkout part to stabilize the app
-    alert(`Order Summary:\nPackage: ${selectedPackage.name}\nCity: ${selectedLocation}\nTotal Price: $${totalCost.toFixed(2)}\n\nPlease send payment via Cash App to $VeganLife007 and include your name and order details in the payment note.`);
-    setOrderComplete(true);
-    // setShowCheckout(true);
-  };
 
-  const orderDetails = {
-    package: selectedPackage,
-    location: selectedLocation,
-    items: selectedItems,
-    customer: customerInfo,
-    total: totalCost
+    setIsSending(true);
+
+    // Format order details for the email
+    const itemDetails = Object.entries(selectedItems)
+      .map(([id, count]) => {
+        const item = foodItems.find(i => i.id === parseInt(id));
+        return `${item.name} (x${count})`;
+      })
+      .join(', ');
+
+    const templateParams = {
+      customer_name: customerInfo.name,
+      customer_email: customerInfo.email,
+      customer_phone: customerInfo.phone,
+      delivery_location: selectedLocation,
+      order_details: `Package: ${selectedPackage.name} | Items: ${itemDetails}`,
+      total_price: `$${totalCost.toFixed(2)}`
+    };
+
+    try {
+      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          service_id: 'service_vuvnsvn',
+          template_id: 'template_3z8k7r6',
+          user_id: 'kKsZfCMjSIOU78QG_',
+          template_params: templateParams
+        })
+      });
+
+      if (response.ok) {
+        alert(`Order Submitted Successfully!\n\nYour order details have been sent to Chef Saa. Please complete your payment of $${totalCost.toFixed(2)} via Cash App to $VeganLife007.`);
+        setOrderComplete(true);
+      } else {
+        throw new Error('Failed to send order email.');
+      }
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      alert("There was an error submitting your order. Please try again or contact us directly.");
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
@@ -155,26 +175,20 @@ const GetDelivered = () => {
             <p>Total Amount: ${totalCost.toFixed(2)}</p>
             <Link to="/" className="return-home-button">Return to Home</Link>
           </div>
-        ) : showCheckout ? (
-          <div className="checkout-section">
-            {/* Checkout form JSX removed for stability */}
-          </div>
         ) : (
           <>
             <div className="delivery-hero">
               <h1 className="delivery-title">GET DELIVERED</h1>
-              {/* Centered Subtitle */}
               <p className="delivery-subtitle">Fresh, raw vegan meals delivered to your door</p>
             </div>
 
-            {/* FINAL FIX: Location selection using the correct CSS classes */}
-            <div className="selection-section"> {/* This class provides the white box/padding */}
+            <div className="selection-section">
               <label htmlFor="location">Select Your Location:</label>
               <select 
                 id="location" 
                 value={selectedLocation} 
                 onChange={handleLocationSelect}
-                className="delivery-select" // This class styles the dropdown itself
+                className="delivery-select"
               >
                 <option value="" disabled>Choose a city...</option>
                 {locations.map(loc => (
@@ -185,7 +199,6 @@ const GetDelivered = () => {
 
             <div className="package-selection">
               <h2>Select Your Package:</h2>
-              {/* Package options are side-by-side */}
               <div className="package-options three-wide"> 
                 {packages.map(pkg => (
                   <div
@@ -220,7 +233,6 @@ const GetDelivered = () => {
                     <div key={item.id} className="food-card">
                       <img src={item.image} alt={item.name} />
                       <h3>{item.name}</h3>
-                      {/* Show price for A La Carte or just the item name for packages */}
                       {selectedPackage['isA La Carte'] && <p className="food-price">${item.price.toFixed(2)}</p>}
                       <div className="item-controls">
                         <button onClick={() => handleItemChange(item.id, -1)} disabled={!selectedItems[item.id]}>-</button>
@@ -282,8 +294,12 @@ const GetDelivered = () => {
                       <img src={CashAppQR} alt="Cash App QR Code" className="qr-code" />
                     </div>
                   </div>
-                  <button onClick={handleProceedToCheckout} className="checkout-button">
-                    Confirm Order - ${totalCost.toFixed(2)}
+                  <button 
+                    onClick={handleProceedToCheckout} 
+                    className="checkout-button"
+                    disabled={isSending}
+                  >
+                    {isSending ? "Sending Order..." : `Confirm Order - $${totalCost.toFixed(2)}`}
                   </button>
                 </div>
               </>
