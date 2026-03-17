@@ -145,25 +145,20 @@ const GetShipped = () => {
       .map(selection => `${selection.item.name} (x${selection.count})`)
       .join(', ');
 
-    const templateParams = {
-      customer_name: customerInfo.name,
-      customer_email: customerInfo.email,
-      customer_phone: customerInfo.phone,
+    const formData = {
+      name: customerInfo.name,
+      email: customerInfo.email,
+      phone: customerInfo.phone,
       shipping_address: `${addressInfo.address}, ${addressInfo.city}, ${addressInfo.state} ${addressInfo.zipcode}`,
       order_details: `SHIPPED ORDER | Items: ${itemDetails}`,
       total_price: `$${totalCost.toFixed(2)}`
     };
 
     try {
-      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+      const response = await fetch('https://formspree.io/f/xjgaprbq', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          service_id: 'service_vuvnsvn',
-          template_id: 'template_3z8k7r6',
-          user_id: 'kKsZfCMjSIOU78QG_',
-          template_params: templateParams
-        })
+        body: JSON.stringify(formData)
       });
 
       if (response.ok) {
@@ -173,7 +168,7 @@ const GetShipped = () => {
         throw new Error('Failed to send order email.');
       }
     } catch (error) {
-      console.error('EmailJS Error:', error);
+      console.error('Formspree Error:', error);
       alert("There was an error submitting your order. Please try again or contact us directly.");
     } finally {
       setIsSending(false);
