@@ -1,9 +1,10 @@
+/* VERSION 2.0 - VERIFIED FORMSPREE INTEGRATION */
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import './GetDelivered.css';
 import RawtopianTransparentLogo from './assets/RawtopianFinalLogotransparent.png'; 
 
-// CORRECTED IMPORTS: Using .JPG (uppercase) for food images
+// ASSET IMPORTS
 import Food1 from './assets/Food1.JPG';
 import Food2 from './assets/Food2.JPG';
 import Food3 from './assets/Food3.JPG';
@@ -111,7 +112,6 @@ const GetDelivered = () => {
 
     setIsSending(true);
 
-    // Format order details for the email
     const itemDetails = Object.entries(selectedItems)
       .map(([id, count]) => {
         const item = foodItems.find(i => i.id === parseInt(id));
@@ -131,19 +131,20 @@ const GetDelivered = () => {
     try {
       const response = await fetch('https://formspree.io/f/xjgaprbq', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(formData )
       });
 
       if (response.ok) {
         alert(`Order Submitted Successfully!\n\nYour order details have been sent to Chef Saa. Please complete your payment of $${totalCost.toFixed(2)} via Cash App to $VeganLife007.`);
         setOrderComplete(true);
       } else {
-        throw new Error('Failed to send order email.');
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to send order.');
       }
     } catch (error) {
       console.error('Formspree Error:', error);
-      alert("There was an error submitting your order. Please try again or contact us directly.");
+      alert("Error: " + error.message);
     } finally {
       setIsSending(false);
     }
@@ -179,16 +180,9 @@ const GetDelivered = () => {
 
             <div className="selection-section">
               <label htmlFor="location">Select Your Location:</label>
-              <select 
-                id="location" 
-                value={selectedLocation} 
-                onChange={handleLocationSelect}
-                className="delivery-select"
-              >
+              <select id="location" value={selectedLocation} onChange={handleLocationSelect} className="delivery-select">
                 <option value="" disabled>Choose a city...</option>
-                {locations.map(loc => (
-                  <option key={loc} value={loc}>{loc}</option>
-                ))}
+                {locations.map(loc => (<option key={loc} value={loc}>{loc}</option>))}
               </select>
             </div>
 
@@ -196,17 +190,9 @@ const GetDelivered = () => {
               <h2>Select Your Package:</h2>
               <div className="package-options three-wide"> 
                 {packages.map(pkg => (
-                  <div
-                    key={pkg.name}
-                    className={`package-card ${selectedPackage && selectedPackage.name === pkg.name ? 'selected' : ''}`}
-                    onClick={() => handlePackageSelect(pkg)}
-                  >
+                  <div key={pkg.name} className={`package-card ${selectedPackage && selectedPackage.name === pkg.name ? 'selected' : ''}`} onClick={() => handlePackageSelect(pkg)}>
                     <h3>{pkg.name}</h3>
-                    {pkg['isA La Carte'] ? (
-                      <p className="package-price">Individual Pricing</p>
-                    ) : (
-                      <p className="package-price">${pkg.price}</p>
-                    )}
+                    <p className="package-price">{pkg['isA La Carte'] ? 'Individual Pricing' : `$${pkg.price}`}</p>
                     <p className="package-description">{pkg.description}</p>
                   </div>
                 ))}
@@ -216,13 +202,7 @@ const GetDelivered = () => {
             {selectedPackage && (
               <div className="food-selection-section">
                 <h2>Select Your Items</h2>
-                <p className="selection-counter">
-                  {selectedPackage['isA La Carte'] ? (
-                    `Total Items: ${totalSelectedItems}`
-                  ) : (
-                    `Selected: ${totalSelectedItems} / ${selectedPackage.count}`
-                  )}
-                </p>
+                <p className="selection-counter">{selectedPackage['isA La Carte'] ? `Total Items: ${totalSelectedItems}` : `Selected: ${totalSelectedItems} / ${selectedPackage.count}`}</p>
                 <div className="food-grid">
                   {foodItems.map(item => (
                     <div key={item.id} className="food-card">
@@ -232,10 +212,7 @@ const GetDelivered = () => {
                       <div className="item-controls">
                         <button onClick={() => handleItemChange(item.id, -1)} disabled={!selectedItems[item.id]}>-</button>
                         <span>{selectedItems[item.id] || 0}</span>
-                        <button 
-                          onClick={() => handleItemChange(item.id, 1)} 
-                          disabled={!selectedPackage['isA La Carte'] && totalSelectedItems >= selectedPackage.count}
-                        >+</button>
+                        <button onClick={() => handleItemChange(item.id, 1)} disabled={!selectedPackage['isA La Carte'] && totalSelectedItems >= selectedPackage.count}>+</button>
                       </div>
                     </div>
                   ))}
@@ -248,31 +225,9 @@ const GetDelivered = () => {
                 <div className="customer-info-section">
                   <h2>Customer Information</h2>
                   <div className="customer-info-form">
-                    <h3>Customer Details</h3>
-                    <input
-                      type="text"
-                      name="name"
-                      placeholder="Full Name"
-                      value={customerInfo.name}
-                      onChange={handleCustomerInfoChange}
-                      required
-                    />
-                    <input
-                      type="email"
-                      name="email"
-                      placeholder="Email Address"
-                      value={customerInfo.email}
-                      onChange={handleCustomerInfoChange}
-                      required
-                    />
-                    <input
-                      type="tel"
-                      name="phone"
-                      placeholder="Phone Number"
-                      value={customerInfo.phone}
-                      onChange={handleCustomerInfoChange}
-                      required
-                    />
+                    <input type="text" name="name" placeholder="Full Name" value={customerInfo.name} onChange={handleCustomerInfoChange} required />
+                    <input type="email" name="email" placeholder="Email Address" value={customerInfo.email} onChange={handleCustomerInfoChange} required />
+                    <input type="tel" name="phone" placeholder="Phone Number" value={customerInfo.phone} onChange={handleCustomerInfoChange} required />
                   </div>
                 </div>
 
@@ -282,18 +237,10 @@ const GetDelivered = () => {
                     <div className="payment-info">
                       <h3>Order Total: ${totalCost.toFixed(2)}</h3>
                       <p className="payment-instructions">Send payment via Cash App to <strong>$VeganLife007</strong></p>
-                      <p className="payment-note">Please include your name and order details in the Cash App payment note.</p>
-                    </div>
-                    <div className="qr-code-container">
-                      <p className="qr-label">Scan to Pay:</p>
                       <img src={CashAppQR} alt="Cash App QR Code" className="qr-code" />
                     </div>
                   </div>
-                  <button 
-                    onClick={handleProceedToCheckout} 
-                    className="checkout-button"
-                    disabled={isSending}
-                  >
+                  <button onClick={handleProceedToCheckout} className="checkout-button" disabled={isSending}>
                     {isSending ? "Sending Order..." : `Confirm Order - $${totalCost.toFixed(2)}`}
                   </button>
                 </div>
