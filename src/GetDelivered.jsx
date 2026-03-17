@@ -1,4 +1,4 @@
-/* VERSION 2.0 - VERIFIED FORMSPREE INTEGRATION */
+/* VERSION 3.0 - FIXED VALIDATION LOGIC */
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import './GetDelivered.css';
@@ -44,17 +44,18 @@ const GetDelivered = () => {
 
   const locations = ['Charlotte', 'Rock Hill', 'Columbia', 'Sumter', 'Bamberg'];
   const packages = [
-    { name: 'A La Carte', count: 0, price: 0, 'isA La Carte': true, description: 'Order any number of meals at individual prices.' },
-    { name: 'Pick 6', count: 6, price: 99, 'isA La Carte': false, description: 'Choose 6 delicious items.' },
-    { name: 'Pick 12', count: 12, price: 175, 'isA La Carte': false, description: 'Choose 12 delicious items.' },
+    { name: 'A La Carte', count: 0, price: 0, isALaCarte: true, description: 'Order any number of meals at individual prices.' },
+    { name: 'Pick 6', count: 6, price: 99, isALaCarte: false, description: 'Choose 6 delicious items.' },
+    { name: 'Pick 12', count: 12, price: 175, isALaCarte: false, description: 'Choose 12 delicious items.' },
   ];
 
   const handleItemChange = (itemId, change) => {
     const currentCount = selectedItems[itemId] || 0;
     const newCount = currentCount + change;
     if (newCount < 0) return;
+    
     const totalSelected = Object.values(selectedItems).reduce((sum, count) => sum + count, 0) + change;
-    if (selectedPackage && !selectedPackage['isA La Carte'] && totalSelected > selectedPackage.count) return;
+    if (selectedPackage && !selectedPackage.isALaCarte && totalSelected > selectedPackage.count) return;
 
     setSelectedItems(prev => {
       const newItems = { ...prev };
@@ -70,7 +71,7 @@ const GetDelivered = () => {
   const totalSelectedItems = Object.values(selectedItems).reduce((sum, count) => sum + count, 0);
   
   const totalCost = useMemo(() => {
-    if (selectedPackage && selectedPackage['isA La Carte']) {
+    if (selectedPackage && selectedPackage.isALaCarte) {
       return Object.entries(selectedItems).reduce((sum, [id, count]) => {
         const item = foodItems.find(i => i.id === parseInt(id));
         return sum + (item ? item.price * count : 0);
@@ -93,18 +94,24 @@ const GetDelivered = () => {
   };
 
   const handleProceedToCheckout = async () => {
+    // FIXED VALIDATION LOGIC
     if (!selectedPackage || !selectedLocation) {
       alert("Please select a package and a delivery location.");
       return;
     }
-    if (!selectedPackage['isA La Carte'] && totalSelectedItems !== selectedPackage.count) {
-      alert(`Please select exactly ${selectedPackage.count} items for the ${selectedPackage.name} package.`);
-      return;
+    
+    if (selectedPackage.isALaCarte) {
+      if (totalSelectedItems === 0) {
+        alert("Please select at least one item for the A La Carte package.");
+        return;
+      }
+    } else {
+      if (totalSelectedItems !== selectedPackage.count) {
+        alert(`Please select exactly ${selectedPackage.count} items for the ${selectedPackage.name} package.`);
+        return;
+      }
     }
-    if (selectedPackage['isA La Carte'] && totalSelectedItems === 0) {
-      alert("Please select at least one item for the A La Carte package.");
-      return;
-    }
+
     if (!customerInfo.name || !customerInfo.email || !customerInfo.phone) {
       alert("Please fill in all customer information fields.");
       return;
@@ -192,7 +199,7 @@ const GetDelivered = () => {
                 {packages.map(pkg => (
                   <div key={pkg.name} className={`package-card ${selectedPackage && selectedPackage.name === pkg.name ? 'selected' : ''}`} onClick={() => handlePackageSelect(pkg)}>
                     <h3>{pkg.name}</h3>
-                    <p className="package-price">{pkg['isA La Carte'] ? 'Individual Pricing' : `$${pkg.price}`}</p>
+                    <p className="package-price">{pkg.isALaCarte ? 'Individual Pricing' : `$${pkg.price}`}</p>
                     <p className="package-description">{pkg.description}</p>
                   </div>
                 ))}
@@ -202,17 +209,17 @@ const GetDelivered = () => {
             {selectedPackage && (
               <div className="food-selection-section">
                 <h2>Select Your Items</h2>
-                <p className="selection-counter">{selectedPackage['isA La Carte'] ? `Total Items: ${totalSelectedItems}` : `Selected: ${totalSelectedItems} / ${selectedPackage.count}`}</p>
+                <p className="selection-counter">{selectedPackage.isALaCarte ? `Total Items: ${totalSelectedItems}` : `Selected: ${totalSelectedItems} / ${selectedPackage.count}`}</p>
                 <div className="food-grid">
                   {foodItems.map(item => (
                     <div key={item.id} className="food-card">
                       <img src={item.image} alt={item.name} />
                       <h3>{item.name}</h3>
-                      {selectedPackage['isA La Carte'] && <p className="food-price">${item.price.toFixed(2)}</p>}
+                      {selectedPackage.isALaCarte && <p className="food-price">${item.price.toFixed(2)}</p>}
                       <div className="item-controls">
                         <button onClick={() => handleItemChange(item.id, -1)} disabled={!selectedItems[item.id]}>-</button>
                         <span>{selectedItems[item.id] || 0}</span>
-                        <button onClick={() => handleItemChange(item.id, 1)} disabled={!selectedPackage['isA La Carte'] && totalSelectedItems >= selectedPackage.count}>+</button>
+                        <button onClick={() => handleItemChange(item.id, 1)} disabled={!selectedPackage.isALaCarte && totalSelectedItems >= selectedPackage.count}>+</button>
                       </div>
                     </div>
                   ))}
