@@ -91,7 +91,7 @@ const GetDelivered = () => {
     setCustomerInfo({ ...customerInfo, [e.target.name]: e.target.value });
   };
 
-  const handleProceedToCheckout = async () => {
+  const handleProceedToCheckout = () => {
     if (!selectedPackage || !selectedLocation) {
       alert("Please select a package and a delivery location.");
       return;
@@ -119,7 +119,13 @@ const GetDelivered = () => {
       })
       .join(', ');
 
-    const formData = {
+    // Create a hidden form and submit it to Formspree
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = 'https://formspree.io/f/xjgaprbq';
+    form.style.display = 'none';
+
+    const fields = {
       name: customerInfo.name,
       email: customerInfo.email,
       phone: customerInfo.phone,
@@ -128,25 +134,26 @@ const GetDelivered = () => {
       total_price: `$${totalCost.toFixed(2)}`
     };
 
-    try {
-      const response = await fetch('https://formspree.io/f/xjgaprbq', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      });
+    Object.entries(fields).forEach(([key, value]) => {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = key;
+      input.value = value;
+      form.appendChild(input);
+    });
 
-      if (response.ok) {
-        alert(`Order Submitted Successfully!\n\nYour order details have been sent to Chef Saa. Please complete your payment of $${totalCost.toFixed(2)} via Cash App to $VeganLife007.`);
-        setOrderComplete(true);
-      } else {
-        throw new Error('Failed to send order email.');
-      }
-    } catch (error) {
-      console.error('Formspree Error:', error);
-      alert("There was an error submitting your order. Please try again or contact us directly.");
-    } finally {
+    document.body.appendChild(form);
+
+    // Submit the form
+    form.submit();
+
+    // Clean up
+    setTimeout(() => {
+      document.body.removeChild(form);
       setIsSending(false);
-    }
+      alert(`Order Submitted Successfully!\n\nYour order details have been sent to Chef Saa. Please complete your payment of $${totalCost.toFixed(2)} via Cash App to $VeganLife007.`);
+      setOrderComplete(true);
+    }, 1000);
   };
 
   return (
