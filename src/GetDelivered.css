@@ -766,3 +766,85 @@
     font-size: 2em;
   }
 }
+
+
+/* Receipt Section */
+.receipt-section {
+  background: linear-gradient(135deg, #fff9e6 0%, #ffe6cc 100%);
+  padding: 30px;
+  border-radius: 15px;
+  margin: 30px 0;
+  border: 2px solid var(--color-fast-food-yellow);
+  box-shadow: 0 4px 12px rgba(218, 41, 28, 0.1);
+}
+
+.receipt-section h3 {
+  font-family: var(--font-special);
+  font-size: 2em;
+  color: var(--color-fast-food-red);
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-weight: 900;
+}
+
+.receipt-section p {
+  font-family: var(--font-body);
+  font-size: 1.1em;
+  color: #333;
+  margin: 12px 0;
+  line-height: 1.6;
+}
+
+.receipt-section strong {
+  color: var(--color-fast-food-red);
+  font-weight: bold;
+}
+
+/* Checkout Button Styling */
+.checkout-button {
+  width: 100%;
+  background: var(--color-fast-food-red);
+  color: white;
+  padding: 20px;
+  font-size: 1.8em;
+  font-weight: bold;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-family: var(--font-main);
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  box-shadow: 0 6px 20px rgba(218, 41, 28, 0.3);
+}
+
+.checkout-button:hover:not(:disabled) {
+  background: #c41e1a;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(218, 41, 28, 0.4);
+}
+
+.checkout-button:disabled {
+  background: #4CAF50;
+  cursor: not-allowed;
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .receipt-section {
+    padding: 20px;
+  }
+
+  .receipt-section h3 {
+    font-size: 1.5em;
+  }
+
+  .receipt-section p {
+    font-size: 1em;
+  }
+
+  .checkout-button {
+    font-size: 1.3em;
+    padding: 15px;
+  }
+}

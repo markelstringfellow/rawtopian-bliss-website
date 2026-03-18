@@ -298,12 +298,19 @@ const GetDelivered = () => {
                       <img src={CashAppQR} alt="Cash App QR Code" className="qr-code" />
                     </div>
                   </div>
+                  <div className="receipt-section">
+                    <h3>Your Order Summary</h3>
+                    <p><strong>Order ID:</strong> #{Math.random().toString(36).substr(2, 9).toUpperCase()}</p>
+                    <p><strong>Package:</strong> {selectedPackage.name}</p>
+                    <p><strong>Location:</strong> {selectedLocation}</p>
+                    <p><strong>Total:</strong> ${totalCost.toFixed(2)}</p>
+                  </div>
                   <button 
                     onClick={handleProceedToCheckout} 
                     className="checkout-button"
                     disabled={isSending}
                   >
-                    {isSending ? "Sending Order..." : `Confirm Order - $${totalCost.toFixed(2)}`}
+                    {isSending ? "✓ Order Sent" : `Confirm Order - $${totalCost.toFixed(2)}`}
                   </button>
                 </div>
               </>
