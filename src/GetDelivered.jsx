@@ -131,8 +131,18 @@ const GetDelivered = () => {
       phone: customerInfo.phone,
       delivery_location: selectedLocation,
       order_details: `DELIVERED ORDER | Package: ${selectedPackage.name} | Items: ${itemDetails}`,
-      total_price: `$${totalCost.toFixed(2)}`
+      total_price: `$${totalCost.toFixed(2)}`,
+      _next: 'https://rawtopianbliss.org/order-success'
     };
+
+    // Save order data to localStorage for the success page
+    localStorage.setItem('lastOrder', JSON.stringify({
+      name: customerInfo.name,
+      location: selectedLocation,
+      package: selectedPackage.name,
+      items: itemDetails,
+      total: totalCost.toFixed(2)
+    }));
 
     Object.entries(fields).forEach(([key, value]) => {
       const input = document.createElement('input');
@@ -146,14 +156,6 @@ const GetDelivered = () => {
 
     // Submit the form
     form.submit();
-
-    // Clean up
-    setTimeout(() => {
-      document.body.removeChild(form);
-      setIsSending(false);
-      alert(`Order Submitted Successfully!\n\nYour order details have been sent to Chef Saa. Please complete your payment of $${totalCost.toFixed(2)} via Cash App to $VeganLife007.`);
-      setOrderComplete(true);
-    }, 1000);
   };
 
   return (
@@ -161,10 +163,10 @@ const GetDelivered = () => {
       <header className="App-header">
         <nav className="horizontal-nav">
           <Link to="/" className="nav-link">HOME</Link>
-          <Link to="/#menu" className="nav-link">MENU</Link>
+          <a href="/#menu" className="nav-link">MENU</a>
           <img src={RawtopianTransparentLogo} alt="Rawtopian Bliss Logo" className="center-logo" />
-          <Link to="/#about" className="nav-link">ABOUT</Link>
-          <Link to="/#contact" className="nav-link">CONTACT</Link>
+          <a href="/#about" className="nav-link">ABOUT</a>
+          <a href="/#contact" className="nav-link">CONTACT</a>
         </nav>
       </header>
 

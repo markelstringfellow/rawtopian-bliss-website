@@ -1,0 +1,190 @@
+.order-success-container {
+  min-height: 100vh;
+  background-color: #fff8e1;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.success-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.success-header {
+  margin-bottom: 40px;
+}
+
+.success-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+}
+
+.success-header h1 {
+  color: #2e7d32;
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.receipt-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  padding: 30px;
+  margin-bottom: 30px;
+  text-align: left;
+  border-top: 8px solid #d32f2f;
+}
+
+.receipt-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px dashed #eee;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.order-id-badge {
+  background: #f5f5f5;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-weight: bold;
+  color: #666;
+  font-size: 14px;
+}
+
+.receipt-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+.receipt-items {
+  background: #fafafa;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 20px 0;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.receipt-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 24px;
+  font-weight: bold;
+  color: #d32f2f;
+  border-top: 2px solid #eee;
+  padding-top: 15px;
+  margin-top: 15px;
+}
+
+.receipt-footer {
+  margin-top: 25px;
+  text-align: center;
+  color: #888;
+  font-size: 14px;
+}
+
+.print-button {
+  background: none;
+  border: 1px solid #ccc;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: all 0.2s;
+}
+
+.print-button:hover {
+  background: #f5f5f5;
+  border-color: #999;
+}
+
+.payment-instructions-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  padding: 30px;
+  margin-bottom: 40px;
+  border-top: 8px solid #00d632; /* Cash App Green */
+}
+
+.payment-highlight {
+  background: #f1fdf3;
+  padding: 25px;
+  border-radius: 12px;
+  margin: 20px 0;
+}
+
+.cashtag {
+  font-size: 42px;
+  color: #00d632;
+  margin: 10px 0;
+  font-weight: 900;
+}
+
+.note-instruction {
+  color: #d32f2f;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.cashapp-pay-button {
+  background-color: #00d632;
+  color: white;
+  border: none;
+  padding: 18px 36px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+  box-shadow: 0 4px 15px rgba(0,214,50,0.3);
+}
+
+.cashapp-pay-button:hover {
+  background-color: #00b32a;
+  transform: translateY(-2px);
+}
+
+.qr-section {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.qr-code-large {
+  max-width: 200px;
+  margin-top: 15px;
+  border: 8px solid white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.finish-button {
+  display: inline-block;
+  padding: 12px 30px;
+  color: #666;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+.finish-button:hover {
+  color: #333;
+}
+
+@media print {
+  .App-header, .payment-actions, .finish-button, .print-button {
+    display: none;
+  }
+  .order-success-container {
+    background: white;
+  }
+  .receipt-card {
+    box-shadow: none;
+    border: 1px solid #eee;
+  }
+}

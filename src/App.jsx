@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 import GetDelivered from './GetDelivered';
 import GetShipped from './GetShipped'; 
+import OrderSuccess from './OrderSuccess';
 import './App.css'; 
 
 // ASSET IMPORTS - Matched exactly to your GitHub assets folder
@@ -40,13 +41,12 @@ const foodItems = [
 const Home = () => (
   <div className="App">
     <header className="App-header">
-      <nav className="horizontal-nav">
-        <a href="#menu" className="nav-link">MENU</a>
-        <a href="#about" className="nav-link">ABOUT</a>
-        <img src={RawtopianTransparentLogo} alt="Rawtopian Bliss Logo" className="center-logo" />
-        <a href="#classes" className="nav-link">CHEF CLASSES</a>
-        <a href="#contact" className="nav-link">CONTACT</a>
-      </nav>
+        <nav className="horizontal-nav">
+          <a href="#menu" className="nav-link">MENU</a>
+          <a href="#about" className="nav-link">ABOUT</a>
+          <img src={RawtopianTransparentLogo} alt="Rawtopian Bliss Logo" className="center-logo" />
+          <a href="#classes" className="nav-link">CHEF CLASSES</a>
+          <a href="#contact" className="nav-link">CONTACT</a>
     </header>
 
     <section className="hero-section">
@@ -106,7 +106,7 @@ const Home = () => (
       </div>
     </section>
 
-    <section className="chef-banner-section">
+    <section id="classes" className="chef-banner-section">
       <img src={SaaBanner} alt="Chef Saa Shalom Banner" className="chef-banner-image" />
     </section>
 
@@ -134,6 +134,7 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/get-delivered" element={<GetDelivered />} />
       <Route path="/get-shipped" element={<GetShipped />} />
+      <Route path="/order-success" element={<OrderSuccess />} />
     </Routes>
   );
 }
