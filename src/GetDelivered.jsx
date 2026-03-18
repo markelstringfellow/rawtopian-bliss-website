@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import './GetDelivered.css';
 import RawtopianTransparentLogo from './assets/RawtopianFinalLogotransparent.png'; 
@@ -25,6 +25,11 @@ const GetDelivered = () => {
   const [customerInfo, setCustomerInfo] = useState({ name: '', email: '', phone: '' });
   const [orderComplete, setOrderComplete] = useState(false);
   const [isSending, setIsSending] = useState(false);
+
+  // Auto-reset the isSending state when the component mounts (fixes the "stuck" button issue)
+  useEffect(() => {
+    setIsSending(false);
+  }, []);
 
   const foodItems = [
     { id: 1, name: "Rainbow Salad", image: Food1, price: 14.99 },
@@ -152,10 +157,26 @@ const GetDelivered = () => {
       form.appendChild(input);
     });
 
+    // Prevent duplicate submissions
+    const submitButton = document.querySelector('.checkout-button');
+    if (submitButton) {
+      submitButton.disabled = true;
+    }
+
     document.body.appendChild(form);
+
+    // Clear the form after submission
+    setTimeout(() => {
+      form.remove();
+    }, 100);
 
     // Submit the form
     form.submit();
+    
+    // Reset button state after a short delay to show success message
+    setTimeout(() => {
+      setIsSending(false);
+    }, 3000);
   };
 
   return (
