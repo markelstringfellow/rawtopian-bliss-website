@@ -47,6 +47,7 @@ const Home = () => (
           <img src={RawtopianTransparentLogo} alt="Rawtopian Bliss Logo" className="center-logo" />
           <a href="#classes" className="nav-link">CHEF CLASSES</a>
           <a href="#contact" className="nav-link">CONTACT</a>
+        </nav>
     </header>
 
     <section className="hero-section">
