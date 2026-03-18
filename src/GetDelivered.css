@@ -830,6 +830,35 @@
   opacity: 0.9;
 }
 
+.checkout-button.order-completed {
+  background: #4CAF50;
+  cursor: not-allowed;
+}
+
+.checkout-button.order-completed:hover {
+  transform: none;
+  box-shadow: 0 6px 20px rgba(218, 41, 28, 0.3);
+}
+
+/* Cash App Link Styling */
+.cashapp-link {
+  color: var(--color-fast-food-red);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.cashapp-link:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+.cashapp-link strong {
+  color: var(--color-fast-food-red);
+  font-weight: bold;
+}
+
 @media (max-width: 768px) {
   .receipt-section {
     padding: 20px;

@@ -115,6 +115,7 @@ const GetDelivered = () => {
     }
 
     setIsSending(true);
+    setOrderComplete(true);
 
     // Format order details for the email
     const itemDetails = Object.entries(selectedItems)
@@ -173,10 +174,8 @@ const GetDelivered = () => {
     // Submit the form
     form.submit();
     
-    // Reset button state after a short delay to show success message
-    setTimeout(() => {
-      setIsSending(false);
-    }, 3000);
+    // Keep the button in "ORDER COMPLETED" state permanently
+    // Do not reset isSending or orderComplete
   };
 
   return (
@@ -311,7 +310,7 @@ const GetDelivered = () => {
                   <div className="payment-container">
                     <div className="payment-info">
                       <h3>Order Total: ${totalCost.toFixed(2)}</h3>
-                      <p className="payment-instructions">Send payment via Cash App to <strong>$VeganLife007</strong></p>
+                      <p className="payment-instructions">Send payment via Cash App to <a href="https://cash.app/$VeganLife007" target="_blank" rel="noopener noreferrer" className="cashapp-link"><strong>$VeganLife007</strong></a></p>
                       <p className="payment-note">Please include your name and order details in the Cash App payment note.</p>
                     </div>
                     <div className="qr-code-container">
@@ -328,10 +327,10 @@ const GetDelivered = () => {
                   </div>
                   <button 
                     onClick={handleProceedToCheckout} 
-                    className="checkout-button"
+                    className={`checkout-button ${isSending ? 'order-completed' : ''}`}
                     disabled={isSending}
                   >
-                    {isSending ? "✓ Order Sent" : `Confirm Order - $${totalCost.toFixed(2)}`}
+                    {isSending ? "✓ ORDER COMPLETED" : `CONFIRM ORDER - $${totalCost.toFixed(2)}`}
                   </button>
                 </div>
               </>
