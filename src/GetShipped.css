@@ -452,3 +452,31 @@
     font-size: 2em;
   }
 }
+
+
+/* Cash App Link Styling */
+.cashapp-link {
+  color: var(--color-fast-food-red);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  pointer-events: auto;
+  display: inline-block;
+}
+
+.cashapp-link:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+  color: #c41e1a;
+}
+
+.cashapp-link strong {
+  color: var(--color-fast-food-red);
+  font-weight: bold;
+  pointer-events: auto;
+}
+
+.cashapp-link:active {
+  opacity: 0.9;
+}
